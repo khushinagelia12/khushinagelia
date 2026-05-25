@@ -38,6 +38,38 @@ const Sparkle = ({ className = "" }) => (
   </svg>
 );
 
+// Crossword — DESIGN intersects with POSTER (shared E), BRAND (shared D), TYPE (shared E)
+// Layout grid 7 cols × 7 rows. null = empty, {l: letter, c?: true to circle}
+type Cell = { l: string; c?: boolean } | null;
+const cw: Cell[][] = [
+  // col:  0           1            2            3            4            5            6
+  [ null,        null,        { l: "B" },  null,        null,        null,        null ],
+  [ null,        null,        { l: "R" },  null,        { l: "T" },  null,        null ],
+  [ { l: "D", c: true }, { l: "E" }, { l: "S", c: true }, { l: "I" }, { l: "G" }, { l: "N", c: true }, null ],
+  [ null,        null,        { l: "I" },  null,        { l: "P" },  null,        null ],
+  [ { l: "P" }, { l: "O" }, { l: "S" },  { l: "T", c: true }, { l: "E" }, { l: "R" }, null ],
+  [ null,        null,        { l: "N" },  null,        null,        null,        null ],
+  [ null,        null,        null,        null,        null,        null,        null ],
+];
+
+const Crossword = () => (
+  <div className="grid grid-cols-7 gap-[2px] w-full max-w-[280px] mx-auto font-stamp">
+    {cw.flat().map((cell, i) => (
+      <div
+        key={i}
+        className={`aspect-square flex items-center justify-center text-sm md:text-base relative ${
+          cell ? "bg-cream border border-ink/70 text-ink" : "bg-transparent"
+        }`}
+      >
+        {cell?.l}
+        {cell?.c && (
+          <span className="absolute inset-[-3px] border-2 border-rust rounded-full pointer-events-none" />
+        )}
+      </div>
+    ))}
+  </div>
+);
+
 function Page({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   return (
     <section className={`relative min-h-screen w-full overflow-hidden paper-texture grain ${className}`}>
@@ -278,63 +310,113 @@ function Portfolio() {
         </div>
       </Page>
 
-      {/* DESIGN GALLERY */}
-      <Page className="px-6 py-20 md:px-16">
+      {/* DESIGN DESK — crossword + collage */}
+      <Page className="px-6 py-20 md:px-16 bg-[oklch(0.91_0.035_70)]">
         <div className="max-w-6xl mx-auto">
-          <div className="flex items-end justify-between mb-12 flex-wrap gap-4">
-            <div>
-              <div className="font-stamp tracking-[0.3em] text-burgundy mb-2">— index 03</div>
-              <h2 className="font-display text-7xl md:text-8xl text-ink leading-none">
-                the <span className="italic text-burgundy">design</span>
-              </h2>
-              <h2 className="font-display text-7xl md:text-8xl italic text-rust leading-none">desk ✶</h2>
-            </div>
-            <p className="font-hand text-3xl text-burgundy rotate-[-2deg] max-w-sm">
-              posters, decks & little brand moments from the year.
-            </p>
+          {/* Header strip — magazine masthead */}
+          <div className="border-y-2 border-ink py-3 mb-10 flex items-center justify-between text-xs font-stamp tracking-[0.3em] text-ink/70">
+            <span>@khushinagelia</span>
+            <span className="hidden md:inline">khushi nagelia</span>
+            <span>graphic design · visuals</span>
           </div>
 
-          <div className="grid md:grid-cols-12 gap-6 auto-rows-[180px]">
-            {designs.map((d, i) => {
-              const spans = [
-                "md:col-span-7 md:row-span-3",
-                "md:col-span-5 md:row-span-2",
-                "md:col-span-5 md:row-span-2",
-                "md:col-span-7 md:row-span-2",
-                "md:col-span-12 md:row-span-2",
-              ];
-              return (
-                <motion.a
-                  key={d.title}
-                  href={d.link}
-                  target="_blank"
-                  rel="noreferrer"
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  whileHover={{ rotate: 0, scale: 1.02 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.08, duration: 0.5 }}
-                  style={{ transform: `rotate(${d.rot})` }}
-                  className={`group relative block bg-paper p-3 vintage-shadow overflow-hidden ${spans[i]}`}
-                >
-                  <div className="tape -top-3 left-1/2 -translate-x-1/2 w-24 h-5 rotate-3" />
-                  <div className="relative w-full h-full overflow-hidden">
-                    <img
-                      src={d.img}
-                      alt={d.title}
-                      className="absolute inset-0 w-full h-full object-cover sepia-[0.1] group-hover:sepia-0 transition-all duration-500"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                    <div className="absolute bottom-0 left-0 right-0 p-5 text-cream translate-y-4 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500">
-                      <div className="font-stamp tracking-[0.25em] text-xs text-gold">{d.tag}</div>
-                      <h3 className="font-display text-2xl leading-tight mt-1">{d.title}</h3>
-                      <p className="font-serif text-sm mt-1 opacity-90">{d.desc}</p>
-                      <div className="font-hand text-lg mt-2 text-gold">open on canva ↗</div>
+          <div className="grid md:grid-cols-12 gap-8 items-start mb-14">
+            {/* LEFT — title + crossword */}
+            <div className="md:col-span-7 relative">
+              <div className="font-stamp tracking-[0.3em] text-burgundy mb-2">— index 03</div>
+              <h2 className="font-display text-7xl md:text-[8rem] text-ink leading-[0.85]">
+                meet the
+              </h2>
+              <h2 className="font-display text-7xl md:text-[8rem] italic text-burgundy leading-[0.85] -mt-2">
+                designer
+              </h2>
+              <div className="mt-4 inline-block bg-ink text-cream px-5 py-1.5 font-serif italic text-lg rounded-full rotate-[-2deg]">
+                ✶ a creative portfolio
+              </div>
+
+              {/* Decorative scribble underline */}
+              <svg className="mt-3 w-64 h-4 text-rust" viewBox="0 0 200 12" fill="none">
+                <path d="M2 8 Q 30 1, 60 6 T 120 6 T 180 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+              </svg>
+
+              <p className="mt-8 font-serif text-lg leading-relaxed max-w-md text-ink/85">
+                I love when type, color and a little chaos collide — these are the posters,
+                pitch decks and brand moments I built this year.
+              </p>
+            </div>
+
+            {/* RIGHT — Crossword */}
+            <div className="md:col-span-5 relative">
+              <div className="font-hand text-2xl text-burgundy rotate-[-3deg] mb-3 inline-block">
+                an eye for visuals & aesthetics ↘
+              </div>
+              <div className="bg-paper p-5 vintage-shadow rotate-[1.5deg] relative">
+                <div className="tape -top-3 left-6 w-20 h-5 -rotate-6" />
+                <div className="tape -top-3 right-6 w-20 h-5 rotate-6" />
+                <div className="font-stamp tracking-[0.3em] text-ink/60 text-xs mb-3">contents — solve the grid</div>
+                <Crossword />
+                <div className="font-hand text-lg text-rust mt-3 -rotate-1">my favourite artworks ✦</div>
+              </div>
+            </div>
+          </div>
+
+          {/* COLLAGE GALLERY — taped polaroids with string */}
+          <div className="relative">
+            {/* hanging string */}
+            <svg className="absolute top-2 left-0 w-full h-8 text-ink/40 pointer-events-none" viewBox="0 0 1000 30" preserveAspectRatio="none">
+              <path d="M0 5 Q 250 25, 500 10 T 1000 12" stroke="currentColor" strokeWidth="1" fill="none" />
+            </svg>
+
+            <div className="grid md:grid-cols-12 gap-6 auto-rows-[180px] pt-6">
+              {designs.map((d, i) => {
+                const spans = [
+                  "md:col-span-7 md:row-span-3",
+                  "md:col-span-5 md:row-span-2",
+                  "md:col-span-5 md:row-span-2",
+                  "md:col-span-7 md:row-span-2",
+                  "md:col-span-12 md:row-span-2",
+                ];
+                const clipColors = ["bg-burgundy", "bg-rust", "bg-gold", "bg-ink", "bg-burgundy"];
+                return (
+                  <motion.a
+                    key={d.title}
+                    href={d.link}
+                    target="_blank"
+                    rel="noreferrer"
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    whileHover={{ rotate: 0, scale: 1.03, y: -6 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: i * 0.08, duration: 0.5 }}
+                    style={{ transform: `rotate(${d.rot})` }}
+                    className={`group relative block bg-paper p-3 pb-10 vintage-shadow overflow-visible ${spans[i]}`}
+                  >
+                    {/* Binder clip */}
+                    <div className={`absolute -top-4 left-1/2 -translate-x-1/2 w-10 h-6 ${clipColors[i]} rounded-sm shadow-md z-10 flex items-center justify-center`}>
+                      <div className="w-1 h-3 bg-cream/60 rounded-full" />
                     </div>
-                  </div>
-                </motion.a>
-              );
-            })}
+                    <div className="relative w-full h-[calc(100%-2rem)] overflow-hidden">
+                      <img
+                        src={d.img}
+                        alt={d.title}
+                        className="absolute inset-0 w-full h-full object-cover sepia-[0.15] saturate-[0.9] group-hover:sepia-0 group-hover:saturate-100 transition-all duration-700"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                      <div className="absolute bottom-0 left-0 right-0 p-5 text-cream translate-y-4 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500">
+                        <div className="font-stamp tracking-[0.25em] text-xs text-gold">{d.tag}</div>
+                        <h3 className="font-display text-2xl leading-tight mt-1">{d.title}</h3>
+                        <p className="font-serif text-sm mt-1 opacity-90">{d.desc}</p>
+                        <div className="font-hand text-lg mt-2 text-gold">open on canva ↗</div>
+                      </div>
+                    </div>
+                    {/* Handwritten caption on polaroid */}
+                    <div className="absolute bottom-2 left-0 right-0 text-center font-hand text-lg text-ink/80 group-hover:opacity-0 transition-opacity">
+                      "{d.title.toLowerCase()}"
+                    </div>
+                  </motion.a>
+                );
+              })}
+            </div>
           </div>
 
           <p className="mt-10 text-center font-hand text-2xl text-ink/70 italic">
@@ -342,6 +424,7 @@ function Portfolio() {
           </p>
         </div>
       </Page>
+
 
       {/* LEADERSHIP COLLAGE */}
       <Page className="px-6 py-20 md:px-16 bg-[oklch(0.9_0.03_72)]">
@@ -480,15 +563,15 @@ function Portfolio() {
           <div className="mt-12 inline-block bg-ink text-cream p-8 vintage-shadow rotate-[-1deg]">
             <div className="font-stamp tracking-[0.3em] text-gold text-xs mb-3">let's talk</div>
             <div className="space-y-2 font-serif text-lg">
-              <div>khushi.nagelia@gmail.com</div>
+              <div>Khushi.nagelia@gmail.com</div>
               <div>+91 76674 80508</div>
             </div>
             <div className="mt-4 flex gap-4 justify-center font-sans text-sm uppercase tracking-wider">
-              <a href="https://linkedin.com/in/khushi-nagelia" target="_blank" rel="noreferrer" className="text-gold hover:text-cream transition-colors underline underline-offset-4">LinkedIn</a>
+              <a href="https://www.linkedin.com/in/khushi-nagelia-b36479345" target="_blank" rel="noreferrer" className="text-gold hover:text-cream transition-colors underline underline-offset-4">LinkedIn</a>
               <span className="text-cream/40">·</span>
-              <a href="https://github.com/khushinagelia" target="_blank" rel="noreferrer" className="text-gold hover:text-cream transition-colors underline underline-offset-4">GitHub</a>
+              <a href="https://github.com/khushinagelia12" target="_blank" rel="noreferrer" className="text-gold hover:text-cream transition-colors underline underline-offset-4">GitHub</a>
               <span className="text-cream/40">·</span>
-              <a href="mailto:khushi.nagelia@gmail.com" className="text-gold hover:text-cream transition-colors underline underline-offset-4">Email</a>
+              <a href="mailto:Khushi.nagelia@gmail.com" className="text-gold hover:text-cream transition-colors underline underline-offset-4">Email</a>
             </div>
           </div>
 
