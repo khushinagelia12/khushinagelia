@@ -165,12 +165,15 @@ function Portfolio() {
                 transition={{ duration: 1, delay: 0.2 }}
               >
                 <div className="inline-block bg-ink text-cream px-3 py-1 font-display text-2xl md:text-3xl mb-2">
-                  meet the
+                  meet
                 </div>
-                <h1 className="font-display text-[20vw] md:text-[9.5vw] leading-[0.85] text-ink tracking-tight">
-                  NAGELIA
+                <h1 className="font-display text-[14vw] md:text-[7.2vw] leading-[0.85] text-burgundy tracking-tight italic">
+                  khushi
                 </h1>
-                <div className="h-[3px] bg-ink w-full -mt-1" />
+                <h1 className="font-display text-[14vw] md:text-[7.2vw] leading-[0.85] text-ink tracking-tight -mt-2">
+                  nagelia
+                </h1>
+                <div className="h-[3px] bg-ink w-full mt-1" />
 
                 <div className="mt-6 inline-flex items-center gap-2 border-2 border-ink bg-cream px-5 py-1.5 rounded-full">
                   <Sparkle className="w-3 h-3 text-burgundy" />
@@ -405,14 +408,14 @@ function Portfolio() {
               <path d="M0 5 Q 250 25, 500 10 T 1000 12" stroke="currentColor" strokeWidth="1" fill="none" />
             </svg>
 
-            <div className="grid md:grid-cols-12 gap-6 auto-rows-[180px] pt-6">
+            <div className="grid grid-cols-2 md:grid-cols-12 gap-6 pt-6">
               {designs.map((d, i) => {
                 const spans = [
-                  "md:col-span-7 md:row-span-3",
-                  "md:col-span-5 md:row-span-2",
-                  "md:col-span-5 md:row-span-2",
-                  "md:col-span-7 md:row-span-2",
-                  "md:col-span-12 md:row-span-2",
+                  "col-span-2 md:col-span-7 h-[420px]",
+                  "col-span-2 md:col-span-5 h-[420px]",
+                  "col-span-1 md:col-span-4 h-[340px]",
+                  "col-span-1 md:col-span-4 h-[340px]",
+                  "col-span-2 md:col-span-4 h-[340px]",
                 ];
                 const clipColors = ["bg-burgundy", "bg-rust", "bg-gold", "bg-ink", "bg-burgundy"];
                 return (
@@ -476,8 +479,17 @@ function Portfolio() {
           </div>
 
           <div className="grid md:grid-cols-12 gap-8 items-start">
-            {/* Photo collage */}
-            <div className="md:col-span-5 relative h-[500px]">
+            {/* Photo collage — sticky */}
+            <div className="md:col-span-5 relative md:sticky md:top-10 h-[640px]">
+              {/* abstract art blob backdrop */}
+              <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 400 640" fill="none">
+                <circle cx="80" cy="120" r="70" fill="oklch(0.7 0.13 75 / 0.25)" />
+                <circle cx="320" cy="480" r="90" fill="oklch(0.5 0.15 40 / 0.18)" />
+                <path d="M40 380 Q 120 320, 200 380 T 360 380" stroke="oklch(0.35 0.12 25 / 0.4)" strokeWidth="2" strokeDasharray="4 6" fill="none" />
+                <path d="M30 30 L 70 30 M 50 10 L 50 50" stroke="oklch(0.35 0.12 25 / 0.5)" strokeWidth="2" />
+                <path d="M340 80 L 380 80 M 360 60 L 360 100" stroke="oklch(0.5 0.15 40 / 0.5)" strokeWidth="2" />
+              </svg>
+
               <motion.div
                 initial={{ opacity: 0, rotate: -10 }}
                 whileInView={{ opacity: 1, rotate: -6 }}
@@ -498,6 +510,36 @@ function Portfolio() {
                 <div className="font-stamp tracking-[0.2em] text-xs text-gold">achievement</div>
                 <div className="font-display text-2xl mt-2 leading-tight">Smart India Hackathon</div>
                 <div className="font-hand text-xl mt-2">semi-finalist '25</div>
+              </motion.div>
+
+              {/* Stamp ticket */}
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="absolute top-[340px] left-6 bg-cream border-2 border-dashed border-ink p-4 w-60 vintage-shadow rotate-[-3deg]"
+              >
+                <div className="font-stamp tracking-[0.3em] text-xs text-burgundy mb-1">★ admit one ★</div>
+                <div className="font-display text-xl text-ink leading-tight">3× MUN Delegate</div>
+                <div className="font-hand text-rust text-lg">global policy · debate</div>
+                <div className="flex justify-between text-[10px] font-stamp tracking-widest text-ink/60 mt-2 border-t border-dashed border-ink/40 pt-1">
+                  <span>NO. 023</span><span>RESERVED</span>
+                </div>
+              </motion.div>
+
+              {/* Postage stamp */}
+              <motion.div
+                initial={{ opacity: 0, rotate: 0 }}
+                whileInView={{ opacity: 1, rotate: 8 }}
+                viewport={{ once: true }}
+                className="absolute bottom-4 right-6 w-44 bg-gold p-3 vintage-shadow"
+                style={{ clipPath: "polygon(0 5%, 5% 0, 95% 0, 100% 5%, 100% 95%, 95% 100%, 5% 100%, 0 95%)" }}
+              >
+                <div className="border-2 border-dashed border-ink p-3 text-center">
+                  <div className="font-stamp tracking-[0.3em] text-ink text-[10px]">editor in chief</div>
+                  <div className="font-display text-lg text-ink leading-tight mt-1">School Magazine</div>
+                  <div className="font-hand text-burgundy">'21–'22</div>
+                </div>
               </motion.div>
 
               <Star className="absolute bottom-6 left-10 text-rust animate-wobble" size={64} />
