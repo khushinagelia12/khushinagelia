@@ -533,12 +533,14 @@ function Portfolio() {
       {/* LEADERSHIP COLLAGE */}
       <Page className="px-6 py-20 md:px-16 bg-[oklch(0.9_0.03_72)]">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-14">
-            <div className="font-stamp tracking-[0.3em] text-burgundy mb-2">— index 03</div>
+          <div className="text-center mb-14 relative">
+            <Banner text="vol · 04 · leadership" className="mb-4 rotate-[-1deg]" />
             <h2 className="font-display text-7xl md:text-8xl text-ink leading-none">
               <span className="italic text-burgundy">leadership</span> &
             </h2>
             <h2 className="font-display text-7xl md:text-8xl text-rust italic">activities</h2>
+            <Camera className="absolute -top-4 right-0 text-burgundy rotate-[12deg] hidden md:block" size={80} />
+            <PaperCut className="w-64 h-3 text-burgundy mx-auto mt-4 opacity-70" />
           </div>
 
           <div className="grid md:grid-cols-12 gap-8 items-start">
