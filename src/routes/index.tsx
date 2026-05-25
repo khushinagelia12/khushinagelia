@@ -560,18 +560,25 @@ function Portfolio() {
             for wandering through my little world.
           </p>
 
-          <div className="mt-12 inline-block bg-ink text-cream p-8 vintage-shadow rotate-[-1deg]">
-            <div className="font-stamp tracking-[0.3em] text-gold text-xs mb-3">let's talk</div>
-            <div className="space-y-2 font-serif text-lg">
-              <div>Khushi.nagelia@gmail.com</div>
-              <div>+91 76674 80508</div>
-            </div>
-            <div className="mt-4 flex gap-4 justify-center font-sans text-sm uppercase tracking-wider">
-              <a href="https://www.linkedin.com/in/khushi-nagelia-b36479345" target="_blank" rel="noreferrer" className="text-gold hover:text-cream transition-colors underline underline-offset-4">LinkedIn</a>
-              <span className="text-cream/40">·</span>
-              <a href="https://github.com/khushinagelia12" target="_blank" rel="noreferrer" className="text-gold hover:text-cream transition-colors underline underline-offset-4">GitHub</a>
-              <span className="text-cream/40">·</span>
-              <a href="mailto:Khushi.nagelia@gmail.com" className="text-gold hover:text-cream transition-colors underline underline-offset-4">Email</a>
+          <div className="mt-12 inline-block bg-ink text-cream p-8 vintage-shadow rotate-[-1deg] text-left">
+            <div className="font-stamp tracking-[0.3em] text-gold text-xs mb-4 text-center">let's talk ✶</div>
+            <div className="space-y-3 font-sans text-base">
+              <div className="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-3">
+                <span className="font-stamp tracking-[0.2em] text-gold text-xs w-20">email</span>
+                <a href="mailto:Khushi.nagelia@gmail.com" className="underline underline-offset-4 hover:text-gold break-all">Khushi.nagelia@gmail.com</a>
+              </div>
+              <div className="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-3">
+                <span className="font-stamp tracking-[0.2em] text-gold text-xs w-20">phone</span>
+                <span>+91 76674 80508</span>
+              </div>
+              <div className="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-3">
+                <span className="font-stamp tracking-[0.2em] text-gold text-xs w-20">linkedin</span>
+                <a href="https://www.linkedin.com/in/khushi-nagelia-b36479345" target="_blank" rel="noreferrer" className="underline underline-offset-4 hover:text-gold break-all">linkedin.com/in/khushi-nagelia-b36479345</a>
+              </div>
+              <div className="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-3">
+                <span className="font-stamp tracking-[0.2em] text-gold text-xs w-20">github</span>
+                <a href="https://github.com/khushinagelia12" target="_blank" rel="noreferrer" className="underline underline-offset-4 hover:text-gold break-all">github.com/khushinagelia12</a>
+              </div>
             </div>
           </div>
 
