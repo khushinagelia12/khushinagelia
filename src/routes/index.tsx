@@ -38,6 +38,61 @@ const Sparkle = ({ className = "" }) => (
   </svg>
 );
 
+// Push pin
+const Pin = ({ className = "", tone = "var(--burgundy)" }: { className?: string; tone?: string }) => (
+  <div className={`relative ${className}`} aria-hidden>
+    <div className="w-5 h-5 rounded-full shadow-[inset_-2px_-2px_4px_rgba(0,0,0,0.35),0_2px_3px_rgba(0,0,0,0.45)]" style={{ background: tone }} />
+    <div className="absolute top-1 left-1 w-1.5 h-1.5 rounded-full bg-cream/70" />
+  </div>
+);
+
+// Vintage banner ribbon
+const Banner = ({ text, className = "" }: { text: string; className?: string }) => (
+  <div className={`relative inline-block ${className}`}>
+    <svg viewBox="0 0 280 56" className="w-72 h-12" preserveAspectRatio="none">
+      <path d="M0 8 L 20 0 L 260 0 L 280 8 L 260 48 L 20 48 L 0 40 Z" fill="oklch(0.35 0.12 25)" />
+      <path d="M0 8 L 12 12 L 12 36 L 0 40 Z" fill="oklch(0.25 0.09 25)" />
+      <path d="M280 8 L 268 12 L 268 36 L 280 40 Z" fill="oklch(0.25 0.09 25)" />
+    </svg>
+    <span className="absolute inset-0 flex items-center justify-center font-stamp tracking-[0.3em] text-cream text-sm px-8">
+      {text}
+    </span>
+  </div>
+);
+
+// Vintage camera
+const Camera = ({ className = "", size = 60 }: { className?: string; size?: number }) => (
+  <svg viewBox="0 0 64 48" width={size} height={size * 0.75} className={className} fill="currentColor" aria-hidden>
+    <path d="M8 12 L 20 12 L 23 6 L 41 6 L 44 12 L 56 12 Q 60 12 60 16 L 60 40 Q 60 44 56 44 L 8 44 Q 4 44 4 40 L 4 16 Q 4 12 8 12 Z" />
+    <circle cx="32" cy="28" r="10" fill="oklch(0.96 0.035 85)" />
+    <circle cx="32" cy="28" r="6.5" fill="currentColor" />
+    <circle cx="32" cy="28" r="3" fill="oklch(0.96 0.035 85)" />
+    <rect x="48" y="16" width="6" height="3" fill="oklch(0.96 0.035 85)" />
+  </svg>
+);
+
+// Clipboard frame
+const Clipboard = ({ children, className = "", rotate = "0deg" }: { children: React.ReactNode; className?: string; rotate?: string }) => (
+  <div className={`relative ${className}`} style={{ transform: `rotate(${rotate})` }}>
+    <div className="absolute -top-4 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center">
+      <div className="w-16 h-3 bg-gradient-to-b from-ink to-ink/70 rounded-t-sm border border-ink shadow-md" />
+      <div className="w-10 h-4 -mt-0.5 bg-gradient-to-b from-ink/80 to-ink rounded-b-sm border border-ink/80" />
+    </div>
+    <div className="bg-[oklch(0.55_0.06_60)] p-3 rounded-md shadow-[0_10px_30px_rgba(60,20,10,0.4)] border-2 border-[oklch(0.42_0.05_55)]">
+      <div className="bg-paper p-5 relative">{children}</div>
+    </div>
+    <div className="absolute -bottom-1 left-4 w-2 h-2 rounded-full bg-ink/60" />
+    <div className="absolute -bottom-1 right-4 w-2 h-2 rounded-full bg-ink/60" />
+  </div>
+);
+
+// Paper-cut scalloped strip (use as a divider/edge)
+const PaperCut = ({ className = "" }: { className?: string }) => (
+  <svg viewBox="0 0 200 12" className={className} preserveAspectRatio="none" aria-hidden>
+    <path d="M0 0 H 200 V 4 Q 195 12 190 4 T 180 4 T 170 4 T 160 4 T 150 4 T 140 4 T 130 4 T 120 4 T 110 4 T 100 4 T 90 4 T 80 4 T 70 4 T 60 4 T 50 4 T 40 4 T 30 4 T 20 4 T 10 4 T 0 4 Z" fill="currentColor" />
+  </svg>
+);
+
 // Crossword puzzle — letters laid on an 11×9 grid, hand-circled words.
 // Words: DESIGN (row 2), POSTER (row 4), BRAND (col 2), TYPE (col 4),
 // STYLE (col 7), GRID (row 6), INK (col 9), ART (row 8)
