@@ -396,11 +396,12 @@ function Portfolio() {
                 style={{ transform: `rotate(${p.rot})` }}
                 className={`relative p-7 vintage-shadow ${p.bg}`}
               >
-                <div className="tape -top-3 left-8 w-20 h-5 rotate-[-6deg]" />
-                <div className="font-stamp tracking-[0.25em] text-xs opacity-80">{p.tag}</div>
+                <Pin className="absolute -top-2 left-6" tone={i === 1 ? "var(--rust)" : "var(--gold)"} />
+                <Pin className="absolute -top-2 right-6" tone={i === 1 ? "var(--burgundy)" : "var(--rust)"} />
+                <div className="font-stamp tracking-[0.25em] text-xs opacity-80 mt-2">{p.tag}</div>
                 <h3 className="font-display text-3xl mt-2 leading-tight">{p.t}</h3>
                 <p className="mt-4 font-serif text-base leading-relaxed opacity-95">{p.d}</p>
-                <div className="mt-6 flex justify-between items-center font-hand text-xl">
+                <div className="mt-6 flex justify-between items-center font-hand text-xl border-t border-dashed border-current/30 pt-3">
                   <span>{p.year}</span>
                   <Star size={20} />
                 </div>
