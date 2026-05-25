@@ -38,6 +38,61 @@ const Sparkle = ({ className = "" }) => (
   </svg>
 );
 
+// Push pin
+const Pin = ({ className = "", tone = "var(--burgundy)" }: { className?: string; tone?: string }) => (
+  <div className={`relative ${className}`} aria-hidden>
+    <div className="w-5 h-5 rounded-full shadow-[inset_-2px_-2px_4px_rgba(0,0,0,0.35),0_2px_3px_rgba(0,0,0,0.45)]" style={{ background: tone }} />
+    <div className="absolute top-1 left-1 w-1.5 h-1.5 rounded-full bg-cream/70" />
+  </div>
+);
+
+// Vintage banner ribbon
+const Banner = ({ text, className = "" }: { text: string; className?: string }) => (
+  <div className={`relative inline-block ${className}`}>
+    <svg viewBox="0 0 280 56" className="w-72 h-12" preserveAspectRatio="none">
+      <path d="M0 8 L 20 0 L 260 0 L 280 8 L 260 48 L 20 48 L 0 40 Z" fill="oklch(0.35 0.12 25)" />
+      <path d="M0 8 L 12 12 L 12 36 L 0 40 Z" fill="oklch(0.25 0.09 25)" />
+      <path d="M280 8 L 268 12 L 268 36 L 280 40 Z" fill="oklch(0.25 0.09 25)" />
+    </svg>
+    <span className="absolute inset-0 flex items-center justify-center font-stamp tracking-[0.3em] text-cream text-sm px-8">
+      {text}
+    </span>
+  </div>
+);
+
+// Vintage camera
+const Camera = ({ className = "", size = 60 }: { className?: string; size?: number }) => (
+  <svg viewBox="0 0 64 48" width={size} height={size * 0.75} className={className} fill="currentColor" aria-hidden>
+    <path d="M8 12 L 20 12 L 23 6 L 41 6 L 44 12 L 56 12 Q 60 12 60 16 L 60 40 Q 60 44 56 44 L 8 44 Q 4 44 4 40 L 4 16 Q 4 12 8 12 Z" />
+    <circle cx="32" cy="28" r="10" fill="oklch(0.96 0.035 85)" />
+    <circle cx="32" cy="28" r="6.5" fill="currentColor" />
+    <circle cx="32" cy="28" r="3" fill="oklch(0.96 0.035 85)" />
+    <rect x="48" y="16" width="6" height="3" fill="oklch(0.96 0.035 85)" />
+  </svg>
+);
+
+// Clipboard frame
+const Clipboard = ({ children, className = "", rotate = "0deg" }: { children: React.ReactNode; className?: string; rotate?: string }) => (
+  <div className={`relative ${className}`} style={{ transform: `rotate(${rotate})` }}>
+    <div className="absolute -top-4 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center">
+      <div className="w-16 h-3 bg-gradient-to-b from-ink to-ink/70 rounded-t-sm border border-ink shadow-md" />
+      <div className="w-10 h-4 -mt-0.5 bg-gradient-to-b from-ink/80 to-ink rounded-b-sm border border-ink/80" />
+    </div>
+    <div className="bg-[oklch(0.55_0.06_60)] p-3 rounded-md shadow-[0_10px_30px_rgba(60,20,10,0.4)] border-2 border-[oklch(0.42_0.05_55)]">
+      <div className="bg-paper p-5 relative">{children}</div>
+    </div>
+    <div className="absolute -bottom-1 left-4 w-2 h-2 rounded-full bg-ink/60" />
+    <div className="absolute -bottom-1 right-4 w-2 h-2 rounded-full bg-ink/60" />
+  </div>
+);
+
+// Paper-cut scalloped strip (use as a divider/edge)
+const PaperCut = ({ className = "" }: { className?: string }) => (
+  <svg viewBox="0 0 200 12" className={className} preserveAspectRatio="none" aria-hidden>
+    <path d="M0 0 H 200 V 4 Q 195 12 190 4 T 180 4 T 170 4 T 160 4 T 150 4 T 140 4 T 130 4 T 120 4 T 110 4 T 100 4 T 90 4 T 80 4 T 70 4 T 60 4 T 50 4 T 40 4 T 30 4 T 20 4 T 10 4 T 0 4 Z" fill="currentColor" />
+  </svg>
+);
+
 // Crossword puzzle — letters laid on an 11×9 grid, hand-circled words.
 // Words: DESIGN (row 2), POSTER (row 4), BRAND (col 2), TYPE (col 4),
 // STYLE (col 7), GRID (row 6), INK (col 9), ART (row 8)
@@ -155,6 +210,10 @@ function Portfolio() {
                 alt="Khushi Nagelia"
                 className="w-full h-[55vh] md:h-[78vh] object-cover grayscale contrast-110"
               />
+              <Pin className="absolute top-3 left-3 z-10" tone="var(--rust)" />
+              <Pin className="absolute top-3 right-3 z-10" tone="var(--gold)" />
+              <Pin className="absolute bottom-3 left-3 z-10" tone="var(--burgundy)" />
+              <Pin className="absolute bottom-3 right-3 z-10" tone="var(--ink)" />
             </motion.div>
 
             {/* Title column */}
@@ -189,7 +248,8 @@ function Portfolio() {
                 </div>
               </motion.div>
 
-              {/* Floating star */}
+              {/* Floating star + vintage camera */}
+              <Camera className="absolute top-6 right-6 md:top-10 md:right-10 text-burgundy rotate-[10deg]" size={70} />
               <Star
                 className="absolute bottom-6 right-6 md:bottom-10 md:right-10 text-cream stroke-ink animate-wobble"
                 size={90}
@@ -291,14 +351,18 @@ function Portfolio() {
       {/* PROJECTS */}
       <Page className="px-6 py-20 md:px-16">
         <div className="max-w-6xl mx-auto">
-          <div className="flex items-end justify-between mb-12 flex-wrap gap-4">
-            <div>
-              <div className="font-stamp tracking-[0.3em] text-burgundy mb-2">— index 02</div>
+          <div className="flex items-end justify-between mb-12 flex-wrap gap-4 relative">
+            <div className="relative">
+              <Banner text="vol · 02 · projects" className="mb-4 rotate-[-3deg]" />
               <h2 className="font-display text-7xl md:text-8xl text-ink leading-none">
                 things i've <span className="italic text-rust">built</span>
               </h2>
+              <Camera className="absolute -top-6 -left-12 text-burgundy rotate-[-15deg] hidden md:block opacity-80" size={70} />
             </div>
-            <p className="font-hand text-3xl text-burgundy rotate-[2deg]">a small museum ✶</p>
+            <div className="relative">
+              <p className="font-hand text-3xl text-burgundy rotate-[2deg]">a small museum ✶</p>
+              <PaperCut className="w-44 h-3 text-rust mt-1" />
+            </div>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
@@ -337,11 +401,12 @@ function Portfolio() {
                 style={{ transform: `rotate(${p.rot})` }}
                 className={`relative p-7 vintage-shadow ${p.bg}`}
               >
-                <div className="tape -top-3 left-8 w-20 h-5 rotate-[-6deg]" />
-                <div className="font-stamp tracking-[0.25em] text-xs opacity-80">{p.tag}</div>
+                <Pin className="absolute -top-2 left-6" tone={i === 1 ? "var(--rust)" : "var(--gold)"} />
+                <Pin className="absolute -top-2 right-6" tone={i === 1 ? "var(--burgundy)" : "var(--rust)"} />
+                <div className="font-stamp tracking-[0.25em] text-xs opacity-80 mt-2">{p.tag}</div>
                 <h3 className="font-display text-3xl mt-2 leading-tight">{p.t}</h3>
                 <p className="mt-4 font-serif text-base leading-relaxed opacity-95">{p.d}</p>
-                <div className="mt-6 flex justify-between items-center font-hand text-xl">
+                <div className="mt-6 flex justify-between items-center font-hand text-xl border-t border-dashed border-current/30 pt-3">
                   <span>{p.year}</span>
                   <Star size={20} />
                 </div>
@@ -364,7 +429,7 @@ function Portfolio() {
           <div className="grid md:grid-cols-12 gap-8 items-start mb-14">
             {/* LEFT — title + crossword */}
             <div className="md:col-span-7 relative">
-              <div className="font-stamp tracking-[0.3em] text-burgundy mb-2">— index 03</div>
+              <Banner text="vol · 03 · design desk" className="mb-4 rotate-[-2deg]" />
               <h2 className="font-display text-7xl md:text-[8rem] text-ink leading-[0.85]">
                 meet the
               </h2>
@@ -384,20 +449,24 @@ function Portfolio() {
                 I love when type, color and a little chaos collide — these are the posters,
                 pitch decks and brand moments I built this year.
               </p>
+
+              {/* vintage camera doodle */}
+              <Camera className="absolute -bottom-2 right-4 text-burgundy rotate-[8deg] opacity-90 hidden md:block" size={90} />
             </div>
 
-            {/* RIGHT — Crossword */}
+            {/* RIGHT — Crossword in a clipboard */}
             <div className="md:col-span-5 relative">
               <div className="font-hand text-2xl text-burgundy rotate-[-3deg] mb-3 inline-block">
                 an eye for visuals & aesthetics ↘
               </div>
-              <div className="bg-paper p-5 vintage-shadow rotate-[1.5deg] relative">
-                <div className="tape -top-3 left-6 w-20 h-5 -rotate-6" />
-                <div className="tape -top-3 right-6 w-20 h-5 rotate-6" />
+              <Clipboard rotate="1.5deg">
+                <Pin className="absolute -top-1 -left-1" tone="var(--rust)" />
+                <Pin className="absolute -top-1 -right-1" tone="var(--gold)" />
                 <div className="font-stamp tracking-[0.3em] text-ink/60 text-xs mb-3">contents — solve the grid</div>
                 <Crossword />
                 <div className="font-hand text-lg text-rust mt-3 -rotate-1">my favourite artworks ✦</div>
-              </div>
+                <PaperCut className="w-full h-3 text-burgundy mt-2 opacity-70" />
+              </Clipboard>
             </div>
           </div>
 
@@ -417,7 +486,7 @@ function Portfolio() {
                   "col-span-1 md:col-span-4 h-[340px]",
                   "col-span-2 md:col-span-4 h-[340px]",
                 ];
-                const clipColors = ["bg-burgundy", "bg-rust", "bg-gold", "bg-ink", "bg-burgundy"];
+                const pinTones = ["var(--burgundy)", "var(--rust)", "var(--gold)", "var(--ink)", "var(--burgundy)"];
                 return (
                   <motion.a
                     key={d.title}
@@ -432,10 +501,9 @@ function Portfolio() {
                     style={{ transform: `rotate(${d.rot})` }}
                     className={`group relative block bg-paper p-3 pb-10 vintage-shadow overflow-visible ${spans[i]}`}
                   >
-                    {/* Binder clip */}
-                    <div className={`absolute -top-4 left-1/2 -translate-x-1/2 w-10 h-6 ${clipColors[i]} rounded-sm shadow-md z-10 flex items-center justify-center`}>
-                      <div className="w-1 h-3 bg-cream/60 rounded-full" />
-                    </div>
+                    {/* Push pin */}
+                    <Pin className="absolute -top-2 left-1/2 -translate-x-1/2 z-10" tone={pinTones[i]} />
+                    <div className="tape absolute -top-3 left-6 w-16 h-4 -rotate-6 opacity-80" />
                     <div className="relative w-full h-[calc(100%-2rem)] overflow-hidden">
                       <img
                         src={d.img}
@@ -470,12 +538,14 @@ function Portfolio() {
       {/* LEADERSHIP COLLAGE */}
       <Page className="px-6 py-20 md:px-16 bg-[oklch(0.9_0.03_72)]">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-14">
-            <div className="font-stamp tracking-[0.3em] text-burgundy mb-2">— index 03</div>
+          <div className="text-center mb-14 relative">
+            <Banner text="vol · 04 · leadership" className="mb-4 rotate-[-1deg]" />
             <h2 className="font-display text-7xl md:text-8xl text-ink leading-none">
               <span className="italic text-burgundy">leadership</span> &
             </h2>
             <h2 className="font-display text-7xl md:text-8xl text-rust italic">activities</h2>
+            <Camera className="absolute -top-4 right-0 text-burgundy rotate-[12deg] hidden md:block" size={80} />
+            <PaperCut className="w-64 h-3 text-burgundy mx-auto mt-4 opacity-70" />
           </div>
 
           <div className="grid md:grid-cols-12 gap-8 items-start">
@@ -496,7 +566,7 @@ function Portfolio() {
                 viewport={{ once: true }}
                 className="absolute top-0 left-0 bg-paper p-2 vintage-shadow w-64"
               >
-                <div className="tape -top-3 left-1/2 -translate-x-1/2 w-24 h-5 rotate-3" />
+                <Pin className="absolute -top-2 left-1/2 -translate-x-1/2 z-10" tone="var(--rust)" />
                 <img src={tiecon} alt="TiECon Mangaluru" className="w-full h-72 object-cover sepia-[0.2]" />
                 <div className="font-hand text-burgundy text-center mt-1">tiecon mangaluru '26 ✶</div>
               </motion.div>
@@ -507,6 +577,8 @@ function Portfolio() {
                 viewport={{ once: true }}
                 className="absolute top-32 right-0 bg-burgundy text-cream p-5 vintage-shadow w-56 rotate-[5deg]"
               >
+                <Pin className="absolute -top-2 left-3" tone="var(--gold)" />
+                <Pin className="absolute -top-2 right-3" tone="var(--cream)" />
                 <div className="font-stamp tracking-[0.2em] text-xs text-gold">achievement</div>
                 <div className="font-display text-2xl mt-2 leading-tight">Smart India Hackathon</div>
                 <div className="font-hand text-xl mt-2">semi-finalist '25</div>
