@@ -244,7 +244,8 @@ function Portfolio() {
                 </div>
               </motion.div>
 
-              {/* Floating star */}
+              {/* Floating star + vintage camera */}
+              <Camera className="absolute top-6 right-6 md:top-10 md:right-10 text-burgundy rotate-[10deg]" size={70} />
               <Star
                 className="absolute bottom-6 right-6 md:bottom-10 md:right-10 text-cream stroke-ink animate-wobble"
                 size={90}
