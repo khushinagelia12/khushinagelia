@@ -38,35 +38,72 @@ const Sparkle = ({ className = "" }) => (
   </svg>
 );
 
-// Crossword — DESIGN intersects with POSTER (shared E), BRAND (shared D), TYPE (shared E)
-// Layout grid 7 cols × 7 rows. null = empty, {l: letter, c?: true to circle}
-type Cell = { l: string; c?: boolean } | null;
+// Crossword puzzle — letters laid on an 11×9 grid, hand-circled words.
+// Words: DESIGN (row 2), POSTER (row 4), BRAND (col 2), TYPE (col 4),
+// STYLE (col 7), GRID (row 6), INK (col 9), ART (row 8)
+type Cell = { l: string; key?: boolean } | null;
 const cw: Cell[][] = [
-  // col:  0           1            2            3            4            5            6
-  [ null,        null,        { l: "B" },  null,        null,        null,        null ],
-  [ null,        null,        { l: "R" },  null,        { l: "T" },  null,        null ],
-  [ { l: "D", c: true }, { l: "E" }, { l: "S", c: true }, { l: "I" }, { l: "G" }, { l: "N", c: true }, null ],
-  [ null,        null,        { l: "I" },  null,        { l: "P" },  null,        null ],
-  [ { l: "P" }, { l: "O" }, { l: "S" },  { l: "T", c: true }, { l: "E" }, { l: "R" }, null ],
-  [ null,        null,        { l: "N" },  null,        null,        null,        null ],
-  [ null,        null,        null,        null,        null,        null,        null ],
+  // c: 0           1           2            3           4           5           6           7            8           9            10
+  [   null,       null,       { l: "B" },  null,       null,       null,       null,       { l: "S" },  null,       null,        null ],
+  [   null,       null,       { l: "R" },  null,       { l: "T" }, null,       null,       { l: "T" },  null,       null,        null ],
+  [ { l: "D", key: true }, { l: "E" }, { l: "S", key: true }, { l: "I" }, { l: "G" }, { l: "N", key: true }, null, { l: "Y" }, null, null, null ],
+  [   null,       null,       { l: "I" },  null,       { l: "P" }, null,       null,       { l: "L" },  null,       { l: "I" },  null ],
+  [ { l: "P" }, { l: "O" }, { l: "S" },  { l: "T", key: true }, { l: "E" }, { l: "R" }, null,       { l: "E" },  null,       { l: "N" },  null ],
+  [   null,       null,       { l: "N" },  null,       null,       null,       null,       null,       null,       { l: "K", key: true }, null ],
+  [   null,       null,       null,       { l: "G" }, { l: "R" }, { l: "I" }, { l: "D", key: true }, null, null, null,        null ],
+  [   null,       null,       null,       null,       null,       null,       null,       null,       null,       null,        null ],
+  [   null,       { l: "A" }, { l: "R" },  { l: "T", key: true }, null, null, null,       null,       null,       null,        null ],
 ];
 
 const Crossword = () => (
-  <div className="grid grid-cols-7 gap-[2px] w-full max-w-[280px] mx-auto font-stamp">
-    {cw.flat().map((cell, i) => (
+  <div className="relative">
+    {/* CONTENTS vertical label */}
+    <div
+      className="absolute -left-2 top-0 bottom-0 flex items-center"
+      style={{ writingMode: "vertical-rl", transform: "rotate(180deg)" }}
+    >
+      <span className="font-display text-3xl md:text-4xl tracking-widest text-ink/80">CONTENTS</span>
+    </div>
+
+    <div className="pl-10">
       <div
-        key={i}
-        className={`aspect-square flex items-center justify-center text-sm md:text-base relative ${
-          cell ? "bg-cream border border-ink/70 text-ink" : "bg-transparent"
-        }`}
+        className="grid gap-[3px]"
+        style={{ gridTemplateColumns: "repeat(11, minmax(0, 1fr))" }}
       >
-        {cell?.l}
-        {cell?.c && (
-          <span className="absolute inset-[-3px] border-2 border-rust rounded-full pointer-events-none" />
-        )}
+        {cw.flat().map((cell, i) => (
+          <div
+            key={i}
+            className={`aspect-square flex items-center justify-center text-[10px] sm:text-xs md:text-sm font-stamp relative ${
+              cell ? "text-ink" : ""
+            }`}
+          >
+            {cell?.l}
+          </div>
+        ))}
       </div>
-    ))}
+
+      {/* Hand-drawn scribble circles overlaid on key words */}
+      <svg
+        className="absolute inset-0 w-full h-full pointer-events-none text-rust"
+        viewBox="0 0 440 360"
+        preserveAspectRatio="none"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+      >
+        {/* DESIGN — row 3 (rough horizontal ellipse) */}
+        <path d="M50 95 Q 30 110, 50 128 Q 150 138, 270 128 Q 290 115, 270 100 Q 150 90, 50 95 Z" />
+        {/* POSTER — row 5 */}
+        <path d="M40 175 Q 22 192, 42 208 Q 150 218, 270 208 Q 288 192, 268 178 Q 150 170, 40 175 Z" opacity="0.85" />
+        {/* STYLE — col 7 vertical */}
+        <path d="M298 38 Q 282 50, 290 70 Q 296 130, 290 195 Q 282 215, 305 215 Q 322 130, 318 70 Q 314 38, 298 38 Z" opacity="0.9" />
+        {/* ART — bottom */}
+        <path d="M50 318 Q 30 332, 50 346 Q 110 354, 165 346 Q 182 332, 162 320 Q 110 312, 50 318 Z" />
+        {/* squiggle next to grid */}
+        <path d="M140 258 q 8 -6 18 0 t 18 0 t 18 0 t 18 0" opacity="0.7" />
+      </svg>
+    </div>
   </div>
 );
 
