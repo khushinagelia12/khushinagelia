@@ -408,14 +408,14 @@ function Portfolio() {
               <path d="M0 5 Q 250 25, 500 10 T 1000 12" stroke="currentColor" strokeWidth="1" fill="none" />
             </svg>
 
-            <div className="grid md:grid-cols-12 gap-6 auto-rows-[180px] pt-6">
+            <div className="grid grid-cols-2 md:grid-cols-12 gap-6 pt-6">
               {designs.map((d, i) => {
                 const spans = [
-                  "md:col-span-7 md:row-span-3",
-                  "md:col-span-5 md:row-span-2",
-                  "md:col-span-5 md:row-span-2",
-                  "md:col-span-7 md:row-span-2",
-                  "md:col-span-12 md:row-span-2",
+                  "col-span-2 md:col-span-7 h-[420px]",
+                  "col-span-2 md:col-span-5 h-[420px]",
+                  "col-span-1 md:col-span-4 h-[340px]",
+                  "col-span-1 md:col-span-4 h-[340px]",
+                  "col-span-2 md:col-span-4 h-[340px]",
                 ];
                 const clipColors = ["bg-burgundy", "bg-rust", "bg-gold", "bg-ink", "bg-burgundy"];
                 return (
