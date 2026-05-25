@@ -66,7 +66,7 @@ function Portfolio() {
       {/* COVER */}
       <Page className="px-6 py-10 md:px-16">
         <div className="absolute top-6 left-6 right-6 flex justify-between items-center text-xs font-sans uppercase tracking-[0.3em] text-burgundy">
-          <span>vol. 01 — mmxxv</span>
+          <span>vol. 01 — mmxxvi</span>
           <span>a creative portfolio</span>
           <span>₹ priceless</span>
         </div>
@@ -83,7 +83,7 @@ function Portfolio() {
               <div className="tape -top-4 left-1/2 -translate-x-1/2 w-32 h-7 rotate-2" />
               <img src={cover} alt="Khushi" className="w-full h-[60vh] md:h-[75vh] object-cover sepia-[0.15] contrast-105" />
               <div className="mt-3 flex justify-between items-center font-hand text-burgundy text-lg">
-                <span>golden hour, '25</span>
+                <span>golden hour, '26</span>
                 <span>★ kn</span>
               </div>
             </div>
@@ -127,7 +127,7 @@ function Portfolio() {
         </div>
       </Page>
 
-      <MarqueeBar text="khushi nagelia · portfolio 2025 · b.tech data science · manipal" />
+      <MarqueeBar text="khushi nagelia · portfolio 2026 · b.tech data science" />
 
       {/* ABOUT */}
       <Page className="px-6 py-20 md:px-16">
@@ -139,12 +139,12 @@ function Portfolio() {
               <span className="font-hand text-rust text-7xl md:text-8xl italic">my</span>self
             </h2>
             <p className="mt-8 font-serif text-lg leading-relaxed text-ink/85 max-w-md">
-              i'm khushi, an 18-year-old data science undergrad at manipal institute of technology.
+              i'm khushi, a 20-year-old data science undergrad at manipal institute of technology.
               i live somewhere between code and creativity — building intelligent systems by day,
               designing pitch decks and chasing sunsets by evening.
             </p>
             <p className="mt-4 font-serif text-lg leading-relaxed text-ink/85 max-w-md">
-              i love connecting deeply with people, leading teams, raising funds for causes that matter,
+              i love connecting deeply with people, leading teams, organizing events,
               and turning small ideas into shipped things.
             </p>
             <div className="mt-8 font-hand text-3xl text-burgundy italic">— kn ✶</div>
