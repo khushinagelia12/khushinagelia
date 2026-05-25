@@ -481,7 +481,7 @@ function Portfolio() {
                   "col-span-1 md:col-span-4 h-[340px]",
                   "col-span-2 md:col-span-4 h-[340px]",
                 ];
-                const clipColors = ["bg-burgundy", "bg-rust", "bg-gold", "bg-ink", "bg-burgundy"];
+                const pinTones = ["var(--burgundy)", "var(--rust)", "var(--gold)", "var(--ink)", "var(--burgundy)"];
                 return (
                   <motion.a
                     key={d.title}
@@ -496,10 +496,9 @@ function Portfolio() {
                     style={{ transform: `rotate(${d.rot})` }}
                     className={`group relative block bg-paper p-3 pb-10 vintage-shadow overflow-visible ${spans[i]}`}
                   >
-                    {/* Binder clip */}
-                    <div className={`absolute -top-4 left-1/2 -translate-x-1/2 w-10 h-6 ${clipColors[i]} rounded-sm shadow-md z-10 flex items-center justify-center`}>
-                      <div className="w-1 h-3 bg-cream/60 rounded-full" />
-                    </div>
+                    {/* Push pin */}
+                    <Pin className="absolute -top-2 left-1/2 -translate-x-1/2 z-10" tone={pinTones[i]} />
+                    <div className="tape absolute -top-3 left-6 w-16 h-4 -rotate-6 opacity-80" />
                     <div className="relative w-full h-[calc(100%-2rem)] overflow-hidden">
                       <img
                         src={d.img}
