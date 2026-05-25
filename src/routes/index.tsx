@@ -561,7 +561,7 @@ function Portfolio() {
                 viewport={{ once: true }}
                 className="absolute top-0 left-0 bg-paper p-2 vintage-shadow w-64"
               >
-                <div className="tape -top-3 left-1/2 -translate-x-1/2 w-24 h-5 rotate-3" />
+                <Pin className="absolute -top-2 left-1/2 -translate-x-1/2 z-10" tone="var(--rust)" />
                 <img src={tiecon} alt="TiECon Mangaluru" className="w-full h-72 object-cover sepia-[0.2]" />
                 <div className="font-hand text-burgundy text-center mt-1">tiecon mangaluru '26 ✶</div>
               </motion.div>
@@ -572,6 +572,8 @@ function Portfolio() {
                 viewport={{ once: true }}
                 className="absolute top-32 right-0 bg-burgundy text-cream p-5 vintage-shadow w-56 rotate-[5deg]"
               >
+                <Pin className="absolute -top-2 left-3" tone="var(--gold)" />
+                <Pin className="absolute -top-2 right-3" tone="var(--cream)" />
                 <div className="font-stamp tracking-[0.2em] text-xs text-gold">achievement</div>
                 <div className="font-display text-2xl mt-2 leading-tight">Smart India Hackathon</div>
                 <div className="font-hand text-xl mt-2">semi-finalist '25</div>
