@@ -38,6 +38,38 @@ const Sparkle = ({ className = "" }) => (
   </svg>
 );
 
+// Crossword — DESIGN intersects with POSTER (shared E), BRAND (shared D), TYPE (shared E)
+// Layout grid 7 cols × 7 rows. null = empty, {l: letter, c?: true to circle}
+type Cell = { l: string; c?: boolean } | null;
+const cw: Cell[][] = [
+  // col:  0           1            2            3            4            5            6
+  [ null,        null,        { l: "B" },  null,        null,        null,        null ],
+  [ null,        null,        { l: "R" },  null,        { l: "T" },  null,        null ],
+  [ { l: "D", c: true }, { l: "E" }, { l: "S", c: true }, { l: "I" }, { l: "G" }, { l: "N", c: true }, null ],
+  [ null,        null,        { l: "I" },  null,        { l: "P" },  null,        null ],
+  [ { l: "P" }, { l: "O" }, { l: "S" },  { l: "T", c: true }, { l: "E" }, { l: "R" }, null ],
+  [ null,        null,        { l: "N" },  null,        null,        null,        null ],
+  [ null,        null,        null,        null,        null,        null,        null ],
+];
+
+const Crossword = () => (
+  <div className="grid grid-cols-7 gap-[2px] w-full max-w-[280px] mx-auto font-stamp">
+    {cw.flat().map((cell, i) => (
+      <div
+        key={i}
+        className={`aspect-square flex items-center justify-center text-sm md:text-base relative ${
+          cell ? "bg-cream border border-ink/70 text-ink" : "bg-transparent"
+        }`}
+      >
+        {cell?.l}
+        {cell?.c && (
+          <span className="absolute inset-[-3px] border-2 border-rust rounded-full pointer-events-none" />
+        )}
+      </div>
+    ))}
+  </div>
+);
+
 function Page({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   return (
     <section className={`relative min-h-screen w-full overflow-hidden paper-texture grain ${className}`}>
