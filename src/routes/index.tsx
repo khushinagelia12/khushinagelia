@@ -479,8 +479,17 @@ function Portfolio() {
           </div>
 
           <div className="grid md:grid-cols-12 gap-8 items-start">
-            {/* Photo collage */}
-            <div className="md:col-span-5 relative h-[500px]">
+            {/* Photo collage — sticky */}
+            <div className="md:col-span-5 relative md:sticky md:top-10 h-[640px]">
+              {/* abstract art blob backdrop */}
+              <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 400 640" fill="none">
+                <circle cx="80" cy="120" r="70" fill="oklch(0.7 0.13 75 / 0.25)" />
+                <circle cx="320" cy="480" r="90" fill="oklch(0.5 0.15 40 / 0.18)" />
+                <path d="M40 380 Q 120 320, 200 380 T 360 380" stroke="oklch(0.35 0.12 25 / 0.4)" strokeWidth="2" strokeDasharray="4 6" fill="none" />
+                <path d="M30 30 L 70 30 M 50 10 L 50 50" stroke="oklch(0.35 0.12 25 / 0.5)" strokeWidth="2" />
+                <path d="M340 80 L 380 80 M 360 60 L 360 100" stroke="oklch(0.5 0.15 40 / 0.5)" strokeWidth="2" />
+              </svg>
+
               <motion.div
                 initial={{ opacity: 0, rotate: -10 }}
                 whileInView={{ opacity: 1, rotate: -6 }}
@@ -501,6 +510,36 @@ function Portfolio() {
                 <div className="font-stamp tracking-[0.2em] text-xs text-gold">achievement</div>
                 <div className="font-display text-2xl mt-2 leading-tight">Smart India Hackathon</div>
                 <div className="font-hand text-xl mt-2">semi-finalist '25</div>
+              </motion.div>
+
+              {/* Stamp ticket */}
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="absolute top-[340px] left-6 bg-cream border-2 border-dashed border-ink p-4 w-60 vintage-shadow rotate-[-3deg]"
+              >
+                <div className="font-stamp tracking-[0.3em] text-xs text-burgundy mb-1">★ admit one ★</div>
+                <div className="font-display text-xl text-ink leading-tight">3× MUN Delegate</div>
+                <div className="font-hand text-rust text-lg">global policy · debate</div>
+                <div className="flex justify-between text-[10px] font-stamp tracking-widest text-ink/60 mt-2 border-t border-dashed border-ink/40 pt-1">
+                  <span>NO. 023</span><span>RESERVED</span>
+                </div>
+              </motion.div>
+
+              {/* Postage stamp */}
+              <motion.div
+                initial={{ opacity: 0, rotate: 0 }}
+                whileInView={{ opacity: 1, rotate: 8 }}
+                viewport={{ once: true }}
+                className="absolute bottom-4 right-6 w-44 bg-gold p-3 vintage-shadow"
+                style={{ clipPath: "polygon(0 5%, 5% 0, 95% 0, 100% 5%, 100% 95%, 95% 100%, 5% 100%, 0 95%)" }}
+              >
+                <div className="border-2 border-dashed border-ink p-3 text-center">
+                  <div className="font-stamp tracking-[0.3em] text-ink text-[10px]">editor in chief</div>
+                  <div className="font-display text-lg text-ink leading-tight mt-1">School Magazine</div>
+                  <div className="font-hand text-burgundy">'21–'22</div>
+                </div>
               </motion.div>
 
               <Star className="absolute bottom-6 left-10 text-rust animate-wobble" size={64} />
