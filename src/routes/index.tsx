@@ -38,35 +38,72 @@ const Sparkle = ({ className = "" }) => (
   </svg>
 );
 
-// Crossword — DESIGN intersects with POSTER (shared E), BRAND (shared D), TYPE (shared E)
-// Layout grid 7 cols × 7 rows. null = empty, {l: letter, c?: true to circle}
-type Cell = { l: string; c?: boolean } | null;
+// Crossword puzzle — letters laid on an 11×9 grid, hand-circled words.
+// Words: DESIGN (row 2), POSTER (row 4), BRAND (col 2), TYPE (col 4),
+// STYLE (col 7), GRID (row 6), INK (col 9), ART (row 8)
+type Cell = { l: string; key?: boolean } | null;
 const cw: Cell[][] = [
-  // col:  0           1            2            3            4            5            6
-  [ null,        null,        { l: "B" },  null,        null,        null,        null ],
-  [ null,        null,        { l: "R" },  null,        { l: "T" },  null,        null ],
-  [ { l: "D", c: true }, { l: "E" }, { l: "S", c: true }, { l: "I" }, { l: "G" }, { l: "N", c: true }, null ],
-  [ null,        null,        { l: "I" },  null,        { l: "P" },  null,        null ],
-  [ { l: "P" }, { l: "O" }, { l: "S" },  { l: "T", c: true }, { l: "E" }, { l: "R" }, null ],
-  [ null,        null,        { l: "N" },  null,        null,        null,        null ],
-  [ null,        null,        null,        null,        null,        null,        null ],
+  // c: 0           1           2            3           4           5           6           7            8           9            10
+  [   null,       null,       { l: "B" },  null,       null,       null,       null,       { l: "S" },  null,       null,        null ],
+  [   null,       null,       { l: "R" },  null,       { l: "T" }, null,       null,       { l: "T" },  null,       null,        null ],
+  [ { l: "D", key: true }, { l: "E" }, { l: "S", key: true }, { l: "I" }, { l: "G" }, { l: "N", key: true }, null, { l: "Y" }, null, null, null ],
+  [   null,       null,       { l: "I" },  null,       { l: "P" }, null,       null,       { l: "L" },  null,       { l: "I" },  null ],
+  [ { l: "P" }, { l: "O" }, { l: "S" },  { l: "T", key: true }, { l: "E" }, { l: "R" }, null,       { l: "E" },  null,       { l: "N" },  null ],
+  [   null,       null,       { l: "N" },  null,       null,       null,       null,       null,       null,       { l: "K", key: true }, null ],
+  [   null,       null,       null,       { l: "G" }, { l: "R" }, { l: "I" }, { l: "D", key: true }, null, null, null,        null ],
+  [   null,       null,       null,       null,       null,       null,       null,       null,       null,       null,        null ],
+  [   null,       { l: "A" }, { l: "R" },  { l: "T", key: true }, null, null, null,       null,       null,       null,        null ],
 ];
 
 const Crossword = () => (
-  <div className="grid grid-cols-7 gap-[2px] w-full max-w-[280px] mx-auto font-stamp">
-    {cw.flat().map((cell, i) => (
+  <div className="relative">
+    {/* CONTENTS vertical label */}
+    <div
+      className="absolute -left-2 top-0 bottom-0 flex items-center"
+      style={{ writingMode: "vertical-rl", transform: "rotate(180deg)" }}
+    >
+      <span className="font-display text-3xl md:text-4xl tracking-widest text-ink/80">CONTENTS</span>
+    </div>
+
+    <div className="pl-10">
       <div
-        key={i}
-        className={`aspect-square flex items-center justify-center text-sm md:text-base relative ${
-          cell ? "bg-cream border border-ink/70 text-ink" : "bg-transparent"
-        }`}
+        className="grid gap-[3px]"
+        style={{ gridTemplateColumns: "repeat(11, minmax(0, 1fr))" }}
       >
-        {cell?.l}
-        {cell?.c && (
-          <span className="absolute inset-[-3px] border-2 border-rust rounded-full pointer-events-none" />
-        )}
+        {cw.flat().map((cell, i) => (
+          <div
+            key={i}
+            className={`aspect-square flex items-center justify-center text-[10px] sm:text-xs md:text-sm font-stamp relative ${
+              cell ? "text-ink" : ""
+            }`}
+          >
+            {cell?.l}
+          </div>
+        ))}
       </div>
-    ))}
+
+      {/* Hand-drawn scribble circles overlaid on key words */}
+      <svg
+        className="absolute inset-0 w-full h-full pointer-events-none text-rust"
+        viewBox="0 0 440 360"
+        preserveAspectRatio="none"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+      >
+        {/* DESIGN — row 3 (rough horizontal ellipse) */}
+        <path d="M50 95 Q 30 110, 50 128 Q 150 138, 270 128 Q 290 115, 270 100 Q 150 90, 50 95 Z" />
+        {/* POSTER — row 5 */}
+        <path d="M40 175 Q 22 192, 42 208 Q 150 218, 270 208 Q 288 192, 268 178 Q 150 170, 40 175 Z" opacity="0.85" />
+        {/* STYLE — col 7 vertical */}
+        <path d="M298 38 Q 282 50, 290 70 Q 296 130, 290 195 Q 282 215, 305 215 Q 322 130, 318 70 Q 314 38, 298 38 Z" opacity="0.9" />
+        {/* ART — bottom */}
+        <path d="M50 318 Q 30 332, 50 346 Q 110 354, 165 346 Q 182 332, 162 320 Q 110 312, 50 318 Z" />
+        {/* squiggle next to grid */}
+        <path d="M140 258 q 8 -6 18 0 t 18 0 t 18 0 t 18 0" opacity="0.7" />
+      </svg>
+    </div>
   </div>
 );
 
@@ -96,68 +133,69 @@ function Portfolio() {
   return (
     <main className="font-serif text-ink">
       {/* COVER */}
-      <Page className="px-6 py-10 md:px-16">
-        <div className="absolute top-6 left-6 right-6 flex justify-between items-center text-xs font-sans uppercase tracking-[0.3em] text-burgundy">
-          <span>vol. 01 — mmxxvi</span>
-          <span>a creative portfolio</span>
-          <span>₹ priceless</span>
-        </div>
+      <Page className="px-4 py-6 md:px-10 md:py-10">
+        <div className="max-w-6xl mx-auto border-2 border-ink bg-[oklch(0.88_0.06_30)] relative overflow-hidden">
+          {/* Top masthead strip */}
+          <div className="border-b-2 border-ink px-4 md:px-8 py-3 flex items-center justify-between text-[10px] md:text-xs font-stamp tracking-[0.3em] text-ink">
+            <span>@khushinagelia</span>
+            <span className="hidden sm:inline">khushi nagelia</span>
+            <span>data · design · leadership</span>
+          </div>
 
-        <div className="relative max-w-6xl mx-auto pt-16 grid md:grid-cols-12 gap-6 items-center">
-          {/* Photo */}
-          <motion.div
-            initial={{ opacity: 0, y: 40, rotate: -3 }}
-            animate={{ opacity: 1, y: 0, rotate: -3 }}
-            transition={{ duration: 1 }}
-            className="md:col-span-6 relative"
-          >
-            <div className="relative bg-paper p-3 vintage-shadow rotate-[-3deg]">
-              <div className="tape -top-4 left-1/2 -translate-x-1/2 w-32 h-7 rotate-2" />
-              <img src={cover} alt="Khushi" className="w-full h-[60vh] md:h-[75vh] object-cover sepia-[0.15] contrast-105" />
-              <div className="mt-3 flex justify-between items-center font-hand text-burgundy text-lg">
-                <span>golden hour, '26</span>
-                <span>★ kn</span>
-              </div>
-            </div>
-            <Star className="absolute -top-6 -right-4 text-rust animate-wobble" size={56} />
-          </motion.div>
-
-          {/* Title */}
-          <div className="md:col-span-6 relative md:pl-8">
+          <div className="grid md:grid-cols-12 gap-0 items-stretch">
+            {/* Photo column */}
             <motion.div
-              initial={{ opacity: 0, x: 40 }}
+              initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 1, delay: 0.3 }}
+              transition={{ duration: 1 }}
+              className="md:col-span-5 relative"
             >
-              <div className="inline-block bg-ink text-cream px-4 py-1 font-stamp tracking-[0.25em] text-sm mb-4">
-                meet the
-              </div>
-              <h1 className="font-display text-[18vw] md:text-[10vw] leading-[0.85] text-burgundy italic">
-                Khushi
-              </h1>
-              <h1 className="font-display text-[18vw] md:text-[10vw] leading-[0.85] text-rust -mt-2">
-                Nagelia
-              </h1>
-
-              <div className="mt-6 inline-flex items-center gap-3 border-2 border-ink px-5 py-2 rounded-full bg-cream">
-                <Sparkle className="w-4 h-4 text-burgundy" />
-                <span className="font-hand text-2xl text-burgundy">a creative portfolio</span>
-                <Sparkle className="w-4 h-4 text-burgundy" />
-              </div>
-
-              <p className="mt-8 font-hand text-3xl text-ink/80 rotate-[-2deg] inline-block">
-                data · design · leadership
-              </p>
-
-              <div className="mt-10 font-sans text-xs uppercase tracking-[0.3em] text-ink/60">
-                ↓ scroll to wander through
-              </div>
+              <img
+                src={cover}
+                alt="Khushi Nagelia"
+                className="w-full h-[55vh] md:h-[78vh] object-cover grayscale contrast-110"
+              />
             </motion.div>
 
-            <Star className="absolute top-10 -left-6 text-gold animate-float" size={32} />
+            {/* Title column */}
+            <div className="md:col-span-7 relative px-6 md:px-10 py-10 md:py-16">
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1, delay: 0.2 }}
+              >
+                <div className="inline-block bg-ink text-cream px-3 py-1 font-display text-2xl md:text-3xl mb-2">
+                  meet the
+                </div>
+                <h1 className="font-display text-[20vw] md:text-[9.5vw] leading-[0.85] text-ink tracking-tight">
+                  NAGELIA
+                </h1>
+                <div className="h-[3px] bg-ink w-full -mt-1" />
+
+                <div className="mt-6 inline-flex items-center gap-2 border-2 border-ink bg-cream px-5 py-1.5 rounded-full">
+                  <Sparkle className="w-3 h-3 text-burgundy" />
+                  <span className="font-serif italic text-base md:text-lg text-ink">a creative portfolio</span>
+                </div>
+
+                <p className="mt-10 font-hand text-3xl md:text-4xl text-burgundy rotate-[-2deg] inline-block">
+                  K. Nagelia
+                </p>
+
+                <div className="mt-8 font-sans text-[10px] uppercase tracking-[0.3em] text-ink/60">
+                  ↓ vol. 01 · mmxxvi · scroll to wander
+                </div>
+              </motion.div>
+
+              {/* Floating star */}
+              <Star
+                className="absolute bottom-6 right-6 md:bottom-10 md:right-10 text-cream stroke-ink animate-wobble"
+                size={90}
+              />
+            </div>
           </div>
         </div>
       </Page>
+
 
       <MarqueeBar text="khushi nagelia · portfolio 2026 · b.tech data science" />
 
@@ -560,18 +598,25 @@ function Portfolio() {
             for wandering through my little world.
           </p>
 
-          <div className="mt-12 inline-block bg-ink text-cream p-8 vintage-shadow rotate-[-1deg]">
-            <div className="font-stamp tracking-[0.3em] text-gold text-xs mb-3">let's talk</div>
-            <div className="space-y-2 font-serif text-lg">
-              <div>Khushi.nagelia@gmail.com</div>
-              <div>+91 76674 80508</div>
-            </div>
-            <div className="mt-4 flex gap-4 justify-center font-sans text-sm uppercase tracking-wider">
-              <a href="https://www.linkedin.com/in/khushi-nagelia-b36479345" target="_blank" rel="noreferrer" className="text-gold hover:text-cream transition-colors underline underline-offset-4">LinkedIn</a>
-              <span className="text-cream/40">·</span>
-              <a href="https://github.com/khushinagelia12" target="_blank" rel="noreferrer" className="text-gold hover:text-cream transition-colors underline underline-offset-4">GitHub</a>
-              <span className="text-cream/40">·</span>
-              <a href="mailto:Khushi.nagelia@gmail.com" className="text-gold hover:text-cream transition-colors underline underline-offset-4">Email</a>
+          <div className="mt-12 inline-block bg-ink text-cream p-8 vintage-shadow rotate-[-1deg] text-left">
+            <div className="font-stamp tracking-[0.3em] text-gold text-xs mb-4 text-center">let's talk ✶</div>
+            <div className="space-y-3 font-sans text-base">
+              <div className="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-3">
+                <span className="font-stamp tracking-[0.2em] text-gold text-xs w-20">email</span>
+                <a href="mailto:Khushi.nagelia@gmail.com" className="underline underline-offset-4 hover:text-gold break-all">Khushi.nagelia@gmail.com</a>
+              </div>
+              <div className="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-3">
+                <span className="font-stamp tracking-[0.2em] text-gold text-xs w-20">phone</span>
+                <span>+91 76674 80508</span>
+              </div>
+              <div className="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-3">
+                <span className="font-stamp tracking-[0.2em] text-gold text-xs w-20">linkedin</span>
+                <a href="https://www.linkedin.com/in/khushi-nagelia-b36479345" target="_blank" rel="noreferrer" className="underline underline-offset-4 hover:text-gold break-all">linkedin.com/in/khushi-nagelia-b36479345</a>
+              </div>
+              <div className="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-3">
+                <span className="font-stamp tracking-[0.2em] text-gold text-xs w-20">github</span>
+                <a href="https://github.com/khushinagelia12" target="_blank" rel="noreferrer" className="underline underline-offset-4 hover:text-gold break-all">github.com/khushinagelia12</a>
+              </div>
             </div>
           </div>
 
