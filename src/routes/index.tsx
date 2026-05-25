@@ -484,11 +484,11 @@ function Portfolio() {
               <div>+91 76674 80508</div>
             </div>
             <div className="mt-4 flex gap-4 justify-center font-sans text-sm uppercase tracking-wider">
-              <a href="https://linkedin.com/in/khushi-nagelia" target="_blank" rel="noreferrer" className="text-gold hover:text-cream transition-colors underline underline-offset-4">LinkedIn</a>
+              <a href="https://www.linkedin.com/in/khushi-nagelia-b36479345" target="_blank" rel="noreferrer" className="text-gold hover:text-cream transition-colors underline underline-offset-4">LinkedIn</a>
               <span className="text-cream/40">·</span>
-              <a href="https://github.com/khushinagelia" target="_blank" rel="noreferrer" className="text-gold hover:text-cream transition-colors underline underline-offset-4">GitHub</a>
+              <a href="https://github.com/khushinagelia12" target="_blank" rel="noreferrer" className="text-gold hover:text-cream transition-colors underline underline-offset-4">GitHub</a>
               <span className="text-cream/40">·</span>
-              <a href="mailto:khushi.nagelia@gmail.com" className="text-gold hover:text-cream transition-colors underline underline-offset-4">Email</a>
+              <a href="mailto:Khushi.nagelia@gmail.com" className="text-gold hover:text-cream transition-colors underline underline-offset-4">Email</a>
             </div>
           </div>
 
