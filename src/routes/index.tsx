@@ -153,11 +153,11 @@ function Portfolio() {
           <div className="md:col-span-7 grid grid-cols-3 gap-3 relative">
             {[
               { label: "cgpa", value: "8.17" },
-              { label: "sponsorships raised", value: "₹15L+" },
+              { label: "events organized", value: "15+" },
               { label: "interns hosted", value: "50+" },
               { label: "countries reached", value: "80+" },
               { label: "lives impacted", value: "5K+" },
-              { label: "fundraised", value: "₹10L" },
+              { label: "teams led", value: "10+" },
             ].map((s, i) => (
               <motion.div
                 key={s.label}
@@ -239,9 +239,9 @@ function Portfolio() {
                 bg: "bg-burgundy text-cream",
               },
               {
-                t: "Invigilation App",
-                tag: "node · postgres",
-                d: "express backend on supabase with JWT auth, role-based panels & optimized schema. shipped for IECSE at MIT Manipal — end-to-end deployment.",
+                t: "SentimentScope",
+                tag: "nlp · transformer",
+                d: "real-time sentiment analysis pipeline using DistilBERT with fine-tuning on multi-domain reviews. deployed with FastAPI and visualized through an interactive React dashboard.",
                 year: "2025",
                 rot: "1.5deg",
                 bg: "bg-cream border-2 border-ink",
@@ -390,7 +390,7 @@ function Portfolio() {
                   org: "E-Cell, MIT Manipal",
                   role: "Executive",
                   yr: "2025 — present",
-                  body: "mentoring early-stage startups, investor outreach, sponsorship acquisition (₹15L+), and executing the Manipal Entrepreneurship Summit with founders & VCs.",
+                  body: "mentoring early-stage startups, investor outreach, and executing the Manipal Entrepreneurship Summit with founders & VCs.",
                 },
                 {
                   org: "IAESTE India",
@@ -402,7 +402,31 @@ function Portfolio() {
                   org: "Rotaract Club of Manipal",
                   role: "Sergeant-at-Arms · Pro. Dev Head",
                   yr: "2025 — present",
-                  body: "led 20+ social impact drives — clothes donations, beach cleanups, education outreach — impacting 5,000+ lives. raised ₹10L through fundraising events.",
+                  body: "led 20+ social impact drives — clothes donations, beach cleanups, education outreach — impacting 5,000+ lives.",
+                },
+                {
+                  org: "Model United Nations",
+                  role: "3-Time Delegate",
+                  yr: "2019 — 2023",
+                  body: "represented delegations at 3 MUN conferences — researched global policy, drafted resolutions, and debated in committees of 100+ delegates.",
+                },
+                {
+                  org: "Frank Anthony All India Debate",
+                  role: "Regional Level Participant",
+                  yr: "2022",
+                  body: "competed at the regional level of the prestigious Frank Anthony Memorial All India Inter-School Debate Competition.",
+                },
+                {
+                  org: "School Magazine",
+                  role: "Editor in Chief",
+                  yr: "2021 — 2022",
+                  body: "led the editorial board, curated content, designed layouts, and oversaw publication of the annual school magazine from concept to print.",
+                },
+                {
+                  org: "IIT Bombay Debate Tournament",
+                  role: "Participant",
+                  yr: "2023",
+                  body: "competed in the 19th edition of the IIT Bombay Debate Tournament, one of india's premier collegiate debate competitions.",
                 },
                 {
                   org: "Project Ecosanitation",
