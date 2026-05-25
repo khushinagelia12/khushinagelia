@@ -482,12 +482,18 @@ function Portfolio() {
             <div className="space-y-2 font-serif text-lg">
               <div>khushi.nagelia@gmail.com</div>
               <div>+91 76674 80508</div>
-              <div className="font-hand text-2xl text-cream/90 pt-2">— manipal, india</div>
+            </div>
+            <div className="mt-4 flex gap-4 justify-center font-sans text-sm uppercase tracking-wider">
+              <a href="https://linkedin.com/in/khushi-nagelia" target="_blank" rel="noreferrer" className="text-gold hover:text-cream transition-colors underline underline-offset-4">LinkedIn</a>
+              <span className="text-cream/40">·</span>
+              <a href="https://github.com/khushinagelia" target="_blank" rel="noreferrer" className="text-gold hover:text-cream transition-colors underline underline-offset-4">GitHub</a>
+              <span className="text-cream/40">·</span>
+              <a href="mailto:khushi.nagelia@gmail.com" className="text-gold hover:text-cream transition-colors underline underline-offset-4">Email</a>
             </div>
           </div>
 
           <div className="mt-12 font-sans text-xs uppercase tracking-[0.3em] text-ink/50">
-            khushi nagelia · portfolio vol. 01 · mmxxv
+            khushi nagelia · portfolio vol. 01 · mmxxvi
           </div>
         </div>
       </Page>
