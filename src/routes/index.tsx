@@ -346,14 +346,18 @@ function Portfolio() {
       {/* PROJECTS */}
       <Page className="px-6 py-20 md:px-16">
         <div className="max-w-6xl mx-auto">
-          <div className="flex items-end justify-between mb-12 flex-wrap gap-4">
-            <div>
-              <div className="font-stamp tracking-[0.3em] text-burgundy mb-2">— index 02</div>
+          <div className="flex items-end justify-between mb-12 flex-wrap gap-4 relative">
+            <div className="relative">
+              <Banner text="vol · 02 · projects" className="mb-4 rotate-[-3deg]" />
               <h2 className="font-display text-7xl md:text-8xl text-ink leading-none">
                 things i've <span className="italic text-rust">built</span>
               </h2>
+              <Camera className="absolute -top-6 -left-12 text-burgundy rotate-[-15deg] hidden md:block opacity-80" size={70} />
             </div>
-            <p className="font-hand text-3xl text-burgundy rotate-[2deg]">a small museum ✶</p>
+            <div className="relative">
+              <p className="font-hand text-3xl text-burgundy rotate-[2deg]">a small museum ✶</p>
+              <PaperCut className="w-44 h-3 text-rust mt-1" />
+            </div>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
