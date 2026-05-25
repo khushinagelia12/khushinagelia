@@ -20,7 +20,7 @@ export const Route = createFileRoute("/")({
   component: Portfolio,
   head: () => ({
     meta: [
-      { title: "Khushi Nagelia — Portfolio '25" },
+      { title: "Khushi Nagelia — Portfolio '26" },
       { name: "description", content: "A vintage creative portfolio of Khushi Nagelia — data science, design & leadership." },
     ],
   }),
@@ -66,7 +66,7 @@ function Portfolio() {
       {/* COVER */}
       <Page className="px-6 py-10 md:px-16">
         <div className="absolute top-6 left-6 right-6 flex justify-between items-center text-xs font-sans uppercase tracking-[0.3em] text-burgundy">
-          <span>vol. 01 — mmxxv</span>
+          <span>vol. 01 — mmxxvi</span>
           <span>a creative portfolio</span>
           <span>₹ priceless</span>
         </div>
@@ -83,7 +83,7 @@ function Portfolio() {
               <div className="tape -top-4 left-1/2 -translate-x-1/2 w-32 h-7 rotate-2" />
               <img src={cover} alt="Khushi" className="w-full h-[60vh] md:h-[75vh] object-cover sepia-[0.15] contrast-105" />
               <div className="mt-3 flex justify-between items-center font-hand text-burgundy text-lg">
-                <span>golden hour, '25</span>
+                <span>golden hour, '26</span>
                 <span>★ kn</span>
               </div>
             </div>
@@ -127,7 +127,7 @@ function Portfolio() {
         </div>
       </Page>
 
-      <MarqueeBar text="khushi nagelia · portfolio 2025 · b.tech data science · manipal" />
+      <MarqueeBar text="khushi nagelia · portfolio 2026 · b.tech data science" />
 
       {/* ABOUT */}
       <Page className="px-6 py-20 md:px-16">
@@ -139,12 +139,12 @@ function Portfolio() {
               <span className="font-hand text-rust text-7xl md:text-8xl italic">my</span>self
             </h2>
             <p className="mt-8 font-serif text-lg leading-relaxed text-ink/85 max-w-md">
-              i'm khushi, an 18-year-old data science undergrad at manipal institute of technology.
+              i'm khushi, a 20-year-old data science undergrad at manipal institute of technology.
               i live somewhere between code and creativity — building intelligent systems by day,
               designing pitch decks and chasing sunsets by evening.
             </p>
             <p className="mt-4 font-serif text-lg leading-relaxed text-ink/85 max-w-md">
-              i love connecting deeply with people, leading teams, raising funds for causes that matter,
+              i love connecting deeply with people, leading teams, organizing events,
               and turning small ideas into shipped things.
             </p>
             <div className="mt-8 font-hand text-3xl text-burgundy italic">— kn ✶</div>
@@ -153,11 +153,11 @@ function Portfolio() {
           <div className="md:col-span-7 grid grid-cols-3 gap-3 relative">
             {[
               { label: "cgpa", value: "8.17" },
-              { label: "sponsorships raised", value: "₹15L+" },
+              { label: "events organized", value: "15+" },
               { label: "interns hosted", value: "50+" },
               { label: "countries reached", value: "80+" },
               { label: "lives impacted", value: "5K+" },
-              { label: "fundraised", value: "₹10L" },
+              { label: "teams led", value: "10+" },
             ].map((s, i) => (
               <motion.div
                 key={s.label}
@@ -239,9 +239,9 @@ function Portfolio() {
                 bg: "bg-burgundy text-cream",
               },
               {
-                t: "Invigilation App",
-                tag: "node · postgres",
-                d: "express backend on supabase with JWT auth, role-based panels & optimized schema. shipped for IECSE at MIT Manipal — end-to-end deployment.",
+                t: "SentimentScope",
+                tag: "nlp · transformer",
+                d: "real-time sentiment analysis pipeline using DistilBERT with fine-tuning on multi-domain reviews. deployed with FastAPI and visualized through an interactive React dashboard.",
                 year: "2025",
                 rot: "1.5deg",
                 bg: "bg-cream border-2 border-ink",
@@ -390,7 +390,7 @@ function Portfolio() {
                   org: "E-Cell, MIT Manipal",
                   role: "Executive",
                   yr: "2025 — present",
-                  body: "mentoring early-stage startups, investor outreach, sponsorship acquisition (₹15L+), and executing the Manipal Entrepreneurship Summit with founders & VCs.",
+                  body: "mentoring early-stage startups, investor outreach, and executing the Manipal Entrepreneurship Summit with founders & VCs.",
                 },
                 {
                   org: "IAESTE India",
@@ -402,7 +402,31 @@ function Portfolio() {
                   org: "Rotaract Club of Manipal",
                   role: "Sergeant-at-Arms · Pro. Dev Head",
                   yr: "2025 — present",
-                  body: "led 20+ social impact drives — clothes donations, beach cleanups, education outreach — impacting 5,000+ lives. raised ₹10L through fundraising events.",
+                  body: "led 20+ social impact drives — clothes donations, beach cleanups, education outreach — impacting 5,000+ lives.",
+                },
+                {
+                  org: "Model United Nations",
+                  role: "3-Time Delegate",
+                  yr: "2019 — 2023",
+                  body: "represented delegations at 3 MUN conferences — researched global policy, drafted resolutions, and debated in committees of 100+ delegates.",
+                },
+                {
+                  org: "Frank Anthony All India Debate",
+                  role: "Regional Level Participant",
+                  yr: "2022",
+                  body: "competed at the regional level of the prestigious Frank Anthony Memorial All India Inter-School Debate Competition.",
+                },
+                {
+                  org: "School Magazine",
+                  role: "Editor in Chief",
+                  yr: "2021 — 2022",
+                  body: "led the editorial board, curated content, designed layouts, and oversaw publication of the annual school magazine from concept to print.",
+                },
+                {
+                  org: "IIT Bombay Debate Tournament",
+                  role: "Participant",
+                  yr: "2023",
+                  body: "competed in the 19th edition of the IIT Bombay Debate Tournament, one of india's premier collegiate debate competitions.",
                 },
                 {
                   org: "Project Ecosanitation",
@@ -458,12 +482,18 @@ function Portfolio() {
             <div className="space-y-2 font-serif text-lg">
               <div>khushi.nagelia@gmail.com</div>
               <div>+91 76674 80508</div>
-              <div className="font-hand text-2xl text-cream/90 pt-2">— manipal, india</div>
+            </div>
+            <div className="mt-4 flex gap-4 justify-center font-sans text-sm uppercase tracking-wider">
+              <a href="https://linkedin.com/in/khushi-nagelia" target="_blank" rel="noreferrer" className="text-gold hover:text-cream transition-colors underline underline-offset-4">LinkedIn</a>
+              <span className="text-cream/40">·</span>
+              <a href="https://github.com/khushinagelia" target="_blank" rel="noreferrer" className="text-gold hover:text-cream transition-colors underline underline-offset-4">GitHub</a>
+              <span className="text-cream/40">·</span>
+              <a href="mailto:khushi.nagelia@gmail.com" className="text-gold hover:text-cream transition-colors underline underline-offset-4">Email</a>
             </div>
           </div>
 
           <div className="mt-12 font-sans text-xs uppercase tracking-[0.3em] text-ink/50">
-            khushi nagelia · portfolio vol. 01 · mmxxv
+            khushi nagelia · portfolio vol. 01 · mmxxvi
           </div>
         </div>
       </Page>
