@@ -480,7 +480,7 @@ function Portfolio() {
           <div className="mt-12 inline-block bg-ink text-cream p-8 vintage-shadow rotate-[-1deg]">
             <div className="font-stamp tracking-[0.3em] text-gold text-xs mb-3">let's talk</div>
             <div className="space-y-2 font-serif text-lg">
-              <div>khushi.nagelia@gmail.com</div>
+              <div>Khushi.nagelia@gmail.com</div>
               <div>+91 76674 80508</div>
             </div>
             <div className="mt-4 flex gap-4 justify-center font-sans text-sm uppercase tracking-wider">
