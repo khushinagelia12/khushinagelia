@@ -210,6 +210,10 @@ function Portfolio() {
                 alt="Khushi Nagelia"
                 className="w-full h-[55vh] md:h-[78vh] object-cover grayscale contrast-110"
               />
+              <Pin className="absolute top-3 left-3 z-10" tone="var(--rust)" />
+              <Pin className="absolute top-3 right-3 z-10" tone="var(--gold)" />
+              <Pin className="absolute bottom-3 left-3 z-10" tone="var(--burgundy)" />
+              <Pin className="absolute bottom-3 right-3 z-10" tone="var(--ink)" />
             </motion.div>
 
             {/* Title column */}
