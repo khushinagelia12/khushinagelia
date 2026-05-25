@@ -165,12 +165,15 @@ function Portfolio() {
                 transition={{ duration: 1, delay: 0.2 }}
               >
                 <div className="inline-block bg-ink text-cream px-3 py-1 font-display text-2xl md:text-3xl mb-2">
-                  meet the
+                  meet
                 </div>
-                <h1 className="font-display text-[20vw] md:text-[9.5vw] leading-[0.85] text-ink tracking-tight">
-                  NAGELIA
+                <h1 className="font-display text-[14vw] md:text-[7.2vw] leading-[0.85] text-burgundy tracking-tight italic">
+                  khushi
                 </h1>
-                <div className="h-[3px] bg-ink w-full -mt-1" />
+                <h1 className="font-display text-[14vw] md:text-[7.2vw] leading-[0.85] text-ink tracking-tight -mt-2">
+                  nagelia
+                </h1>
+                <div className="h-[3px] bg-ink w-full mt-1" />
 
                 <div className="mt-6 inline-flex items-center gap-2 border-2 border-ink bg-cream px-5 py-1.5 rounded-full">
                   <Sparkle className="w-3 h-3 text-burgundy" />
