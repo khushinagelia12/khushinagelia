@@ -20,7 +20,7 @@ export const Route = createFileRoute("/")({
   component: Portfolio,
   head: () => ({
     meta: [
-      { title: "Khushi Nagelia — Portfolio '25" },
+      { title: "Khushi Nagelia — Portfolio '26" },
       { name: "description", content: "A vintage creative portfolio of Khushi Nagelia — data science, design & leadership." },
     ],
   }),
