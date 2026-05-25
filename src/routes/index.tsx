@@ -133,68 +133,69 @@ function Portfolio() {
   return (
     <main className="font-serif text-ink">
       {/* COVER */}
-      <Page className="px-6 py-10 md:px-16">
-        <div className="absolute top-6 left-6 right-6 flex justify-between items-center text-xs font-sans uppercase tracking-[0.3em] text-burgundy">
-          <span>vol. 01 — mmxxvi</span>
-          <span>a creative portfolio</span>
-          <span>₹ priceless</span>
-        </div>
+      <Page className="px-4 py-6 md:px-10 md:py-10">
+        <div className="max-w-6xl mx-auto border-2 border-ink bg-[oklch(0.88_0.06_30)] relative overflow-hidden">
+          {/* Top masthead strip */}
+          <div className="border-b-2 border-ink px-4 md:px-8 py-3 flex items-center justify-between text-[10px] md:text-xs font-stamp tracking-[0.3em] text-ink">
+            <span>@khushinagelia</span>
+            <span className="hidden sm:inline">khushi nagelia</span>
+            <span>data · design · leadership</span>
+          </div>
 
-        <div className="relative max-w-6xl mx-auto pt-16 grid md:grid-cols-12 gap-6 items-center">
-          {/* Photo */}
-          <motion.div
-            initial={{ opacity: 0, y: 40, rotate: -3 }}
-            animate={{ opacity: 1, y: 0, rotate: -3 }}
-            transition={{ duration: 1 }}
-            className="md:col-span-6 relative"
-          >
-            <div className="relative bg-paper p-3 vintage-shadow rotate-[-3deg]">
-              <div className="tape -top-4 left-1/2 -translate-x-1/2 w-32 h-7 rotate-2" />
-              <img src={cover} alt="Khushi" className="w-full h-[60vh] md:h-[75vh] object-cover sepia-[0.15] contrast-105" />
-              <div className="mt-3 flex justify-between items-center font-hand text-burgundy text-lg">
-                <span>golden hour, '26</span>
-                <span>★ kn</span>
-              </div>
-            </div>
-            <Star className="absolute -top-6 -right-4 text-rust animate-wobble" size={56} />
-          </motion.div>
-
-          {/* Title */}
-          <div className="md:col-span-6 relative md:pl-8">
+          <div className="grid md:grid-cols-12 gap-0 items-stretch">
+            {/* Photo column */}
             <motion.div
-              initial={{ opacity: 0, x: 40 }}
+              initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 1, delay: 0.3 }}
+              transition={{ duration: 1 }}
+              className="md:col-span-5 relative"
             >
-              <div className="inline-block bg-ink text-cream px-4 py-1 font-stamp tracking-[0.25em] text-sm mb-4">
-                meet the
-              </div>
-              <h1 className="font-display text-[18vw] md:text-[10vw] leading-[0.85] text-burgundy italic">
-                Khushi
-              </h1>
-              <h1 className="font-display text-[18vw] md:text-[10vw] leading-[0.85] text-rust -mt-2">
-                Nagelia
-              </h1>
-
-              <div className="mt-6 inline-flex items-center gap-3 border-2 border-ink px-5 py-2 rounded-full bg-cream">
-                <Sparkle className="w-4 h-4 text-burgundy" />
-                <span className="font-hand text-2xl text-burgundy">a creative portfolio</span>
-                <Sparkle className="w-4 h-4 text-burgundy" />
-              </div>
-
-              <p className="mt-8 font-hand text-3xl text-ink/80 rotate-[-2deg] inline-block">
-                data · design · leadership
-              </p>
-
-              <div className="mt-10 font-sans text-xs uppercase tracking-[0.3em] text-ink/60">
-                ↓ scroll to wander through
-              </div>
+              <img
+                src={cover}
+                alt="Khushi Nagelia"
+                className="w-full h-[55vh] md:h-[78vh] object-cover grayscale contrast-110"
+              />
             </motion.div>
 
-            <Star className="absolute top-10 -left-6 text-gold animate-float" size={32} />
+            {/* Title column */}
+            <div className="md:col-span-7 relative px-6 md:px-10 py-10 md:py-16">
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1, delay: 0.2 }}
+              >
+                <div className="inline-block bg-ink text-cream px-3 py-1 font-display text-2xl md:text-3xl mb-2">
+                  meet the
+                </div>
+                <h1 className="font-display text-[20vw] md:text-[9.5vw] leading-[0.85] text-ink tracking-tight">
+                  NAGELIA
+                </h1>
+                <div className="h-[3px] bg-ink w-full -mt-1" />
+
+                <div className="mt-6 inline-flex items-center gap-2 border-2 border-ink bg-cream px-5 py-1.5 rounded-full">
+                  <Sparkle className="w-3 h-3 text-burgundy" />
+                  <span className="font-serif italic text-base md:text-lg text-ink">a creative portfolio</span>
+                </div>
+
+                <p className="mt-10 font-hand text-3xl md:text-4xl text-burgundy rotate-[-2deg] inline-block">
+                  K. Nagelia
+                </p>
+
+                <div className="mt-8 font-sans text-[10px] uppercase tracking-[0.3em] text-ink/60">
+                  ↓ vol. 01 · mmxxvi · scroll to wander
+                </div>
+              </motion.div>
+
+              {/* Floating star */}
+              <Star
+                className="absolute bottom-6 right-6 md:bottom-10 md:right-10 text-cream stroke-ink animate-wobble"
+                size={90}
+              />
+            </div>
           </div>
         </div>
       </Page>
+
 
       <MarqueeBar text="khushi nagelia · portfolio 2026 · b.tech data science" />
 
