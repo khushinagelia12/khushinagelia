@@ -424,7 +424,7 @@ function Portfolio() {
           <div className="grid md:grid-cols-12 gap-8 items-start mb-14">
             {/* LEFT — title + crossword */}
             <div className="md:col-span-7 relative">
-              <div className="font-stamp tracking-[0.3em] text-burgundy mb-2">— index 03</div>
+              <Banner text="vol · 03 · design desk" className="mb-4 rotate-[-2deg]" />
               <h2 className="font-display text-7xl md:text-[8rem] text-ink leading-[0.85]">
                 meet the
               </h2>
@@ -444,20 +444,24 @@ function Portfolio() {
                 I love when type, color and a little chaos collide — these are the posters,
                 pitch decks and brand moments I built this year.
               </p>
+
+              {/* vintage camera doodle */}
+              <Camera className="absolute -bottom-2 right-4 text-burgundy rotate-[8deg] opacity-90 hidden md:block" size={90} />
             </div>
 
-            {/* RIGHT — Crossword */}
+            {/* RIGHT — Crossword in a clipboard */}
             <div className="md:col-span-5 relative">
               <div className="font-hand text-2xl text-burgundy rotate-[-3deg] mb-3 inline-block">
                 an eye for visuals & aesthetics ↘
               </div>
-              <div className="bg-paper p-5 vintage-shadow rotate-[1.5deg] relative">
-                <div className="tape -top-3 left-6 w-20 h-5 -rotate-6" />
-                <div className="tape -top-3 right-6 w-20 h-5 rotate-6" />
+              <Clipboard rotate="1.5deg">
+                <Pin className="absolute -top-1 -left-1" tone="var(--rust)" />
+                <Pin className="absolute -top-1 -right-1" tone="var(--gold)" />
                 <div className="font-stamp tracking-[0.3em] text-ink/60 text-xs mb-3">contents — solve the grid</div>
                 <Crossword />
                 <div className="font-hand text-lg text-rust mt-3 -rotate-1">my favourite artworks ✦</div>
-              </div>
+                <PaperCut className="w-full h-3 text-burgundy mt-2 opacity-70" />
+              </Clipboard>
             </div>
           </div>
 
