@@ -278,6 +278,71 @@ function Portfolio() {
         </div>
       </Page>
 
+      {/* DESIGN GALLERY */}
+      <Page className="px-6 py-20 md:px-16">
+        <div className="max-w-6xl mx-auto">
+          <div className="flex items-end justify-between mb-12 flex-wrap gap-4">
+            <div>
+              <div className="font-stamp tracking-[0.3em] text-burgundy mb-2">— index 03</div>
+              <h2 className="font-display text-7xl md:text-8xl text-ink leading-none">
+                the <span className="italic text-burgundy">design</span>
+              </h2>
+              <h2 className="font-display text-7xl md:text-8xl italic text-rust leading-none">desk ✶</h2>
+            </div>
+            <p className="font-hand text-3xl text-burgundy rotate-[-2deg] max-w-sm">
+              posters, decks & little brand moments from the year.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-12 gap-6 auto-rows-[180px]">
+            {designs.map((d, i) => {
+              const spans = [
+                "md:col-span-7 md:row-span-3",
+                "md:col-span-5 md:row-span-2",
+                "md:col-span-5 md:row-span-2",
+                "md:col-span-7 md:row-span-2",
+                "md:col-span-12 md:row-span-2",
+              ];
+              return (
+                <motion.a
+                  key={d.title}
+                  href={d.link}
+                  target="_blank"
+                  rel="noreferrer"
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  whileHover={{ rotate: 0, scale: 1.02 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.08, duration: 0.5 }}
+                  style={{ transform: `rotate(${d.rot})` }}
+                  className={`group relative block bg-paper p-3 vintage-shadow overflow-hidden ${spans[i]}`}
+                >
+                  <div className="tape -top-3 left-1/2 -translate-x-1/2 w-24 h-5 rotate-3" />
+                  <div className="relative w-full h-full overflow-hidden">
+                    <img
+                      src={d.img}
+                      alt={d.title}
+                      className="absolute inset-0 w-full h-full object-cover sepia-[0.1] group-hover:sepia-0 transition-all duration-500"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    <div className="absolute bottom-0 left-0 right-0 p-5 text-cream translate-y-4 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500">
+                      <div className="font-stamp tracking-[0.25em] text-xs text-gold">{d.tag}</div>
+                      <h3 className="font-display text-2xl leading-tight mt-1">{d.title}</h3>
+                      <p className="font-serif text-sm mt-1 opacity-90">{d.desc}</p>
+                      <div className="font-hand text-lg mt-2 text-gold">open on canva ↗</div>
+                    </div>
+                  </div>
+                </motion.a>
+              );
+            })}
+          </div>
+
+          <p className="mt-10 text-center font-hand text-2xl text-ink/70 italic">
+            ✶ hover to peek · tap to open the full design ✶
+          </p>
+        </div>
+      </Page>
+
       {/* LEADERSHIP COLLAGE */}
       <Page className="px-6 py-20 md:px-16 bg-[oklch(0.9_0.03_72)]">
         <div className="max-w-6xl mx-auto">
