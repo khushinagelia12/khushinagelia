@@ -2,6 +2,19 @@ import { createFileRoute } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import cover from "@/assets/cover.jpg";
 import tiecon from "@/assets/tiecon.jpg";
+import design1 from "@/assets/design1.jpg";
+import design2 from "@/assets/design2.jpg";
+import design3 from "@/assets/design3.jpg";
+import design4 from "@/assets/design4.jpg";
+import design5 from "@/assets/design5.jpg";
+
+const designs = [
+  { img: design1, title: "IECSE × Prometheus", tag: "event identity", desc: "events & workshops poster for IECSE's flagship Prometheus — dark fantasy aesthetic.", link: "https://canva.link/ic3ymv28udva26z", rot: "-2deg" },
+  { img: design3, title: "Project Ecosanitation", tag: "pitch deck", desc: "editorial pitch deck for the beVisioneers fellowship — typographic, calm, confident.", link: "https://canva.link/sm64e3hehx3fi4a", rot: "1.5deg" },
+  { img: design5, title: "Cryptoss", tag: "event poster", desc: "mystic-themed poster for a cryptography event under MIT's SDG initiative.", link: "https://canva.link/0334p4elwwv1idt", rot: "-1deg" },
+  { img: design4, title: "Period Awareness", tag: "outreach deck", desc: "playful, accessible deck about menstrual health for Project Ecosanitation.", link: "https://canva.link/mvgrg6gtnhx9lat", rot: "2deg" },
+  { img: design2, title: "IAESTE LC Manipal", tag: "branding", desc: "monochrome poster for IAESTE's global exchange community at Manipal.", link: "https://canva.link/vyp3rtiz2ejsov5", rot: "-1.5deg" },
+];
 
 export const Route = createFileRoute("/")({
   component: Portfolio,
