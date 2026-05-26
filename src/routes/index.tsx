@@ -517,8 +517,11 @@ function Portfolio() {
                 pitch decks and brand moments I built this year.
               </p>
 
-              {/* vintage camera doodle */}
+              {/* vintage stickers cluster */}
               <Camera className="absolute -bottom-2 right-4 text-burgundy rotate-[8deg] opacity-90 hidden md:block" size={90} />
+              <FilmStrip className="absolute -left-4 top-32 w-14 rotate-[-8deg] hidden md:block" frames={4} />
+              <Bow className="absolute -top-4 left-40 rotate-[15deg]" size={52} />
+              <DiscoBall className="absolute bottom-16 left-4 hidden md:block animate-float" size={64} />
             </div>
 
             {/* RIGHT — Crossword in a clipboard */}
