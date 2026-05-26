@@ -128,9 +128,10 @@ const Crossword = () => (
         {cw.flat().map((cell, i) => (
           <div
             key={i}
-            className={`aspect-square flex items-center justify-center text-[10px] sm:text-xs md:text-sm font-stamp relative ${
+            className={`aspect-square flex items-center justify-center font-display font-bold text-base sm:text-xl md:text-2xl relative ${
               cell ? "text-ink" : ""
             }`}
+            style={cell ? { textShadow: "1px 1px 0 oklch(0.78 0.06 65 / 0.6)" } : undefined}
           >
             {cell?.l}
           </div>
