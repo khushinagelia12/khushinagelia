@@ -323,9 +323,7 @@ function Portfolio() {
 
 
       <MarqueeBar text="khushi nagelia · portfolio 2026 · b.tech data science" />
-          </div>
-        </div>
-      </Page>
+
 
 
       <MarqueeBar text="khushi nagelia · portfolio 2026 · b.tech data science" />
