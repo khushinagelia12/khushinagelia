@@ -351,14 +351,16 @@ function Portfolio() {
               </motion.div>
 
               {/* Floating star + vintage camera + film strip + bow */}
-              <Camera className="absolute top-6 right-6 md:top-10 md:right-10 text-burgundy rotate-[10deg]" size={70} />
-              <FilmStrip className="absolute top-24 right-4 md:top-32 md:right-6 w-12 rotate-[6deg] opacity-90 hidden sm:block" frames={3} />
-              <Bow className="absolute top-2 left-2 md:top-4 md:left-4 rotate-[-20deg]" size={56} />
+              <Camera className="absolute top-6 right-6 md:top-10 md:right-10 text-burgundy rotate-[10deg] animate-wobble sticker" size={70} />
+              <FilmStrip className="absolute top-24 right-4 md:top-32 md:right-6 w-12 rotate-[6deg] opacity-95 hidden sm:block animate-sway sticker" frames={3} />
+              <Bow className="absolute top-2 left-2 md:top-4 md:left-4 animate-jiggle sticker" size={64} />
               <Star
-                className="absolute bottom-6 right-6 md:bottom-10 md:right-10 text-cream stroke-ink animate-wobble"
+                className="absolute bottom-6 right-6 md:bottom-10 md:right-10 text-cream stroke-ink animate-wobble sticker"
                 size={90}
               />
-              <HeartSticker text="vol 26" className="absolute bottom-4 left-4 md:bottom-8 md:left-8 rotate-[-8deg]" />
+              <DiscoBall className="absolute top-32 left-2 md:top-40 md:left-6 hidden sm:block animate-float animate-shimmer sticker" size={52} style={{ animationDuration: "7s" }} />
+              <HeartSticker text="vol 26" className="absolute bottom-4 left-4 md:bottom-8 md:left-8 rotate-[-8deg] animate-float sticker" />
+
             </div>
           </div>
         </div>
