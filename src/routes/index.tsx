@@ -93,62 +93,105 @@ const PaperCut = ({ className = "" }: { className?: string }) => (
   </svg>
 );
 
-// Film strip — vertical reel with empty frames
+// Film strip — vertical reel with tiny photo hints + glossy frames
 const FilmStrip = ({ className = "", frames = 4 }: { className?: string; frames?: number }) => (
-  <div className={`relative bg-ink p-1.5 ${className}`}>
+  <div className={`relative bg-ink p-1.5 rounded-[2px] shadow-[0_6px_16px_-6px_rgba(0,0,0,0.45)] ${className}`}>
     <div className="flex justify-between px-0.5 mb-1">
-      {Array.from({ length: 8 }).map((_, i) => <div key={i} className="w-1.5 h-1.5 bg-cream rounded-sm" />)}
+      {Array.from({ length: 8 }).map((_, i) => <div key={i} className="w-1.5 h-1.5 bg-cream/90 rounded-[1px]" />)}
     </div>
     <div className="flex flex-col gap-1.5">
       {Array.from({ length: frames }).map((_, i) => (
-        <div key={i} className="bg-cream/95 aspect-[4/3] border border-ink/30" />
+        <div
+          key={i}
+          className="aspect-[4/3] border border-ink/40 relative overflow-hidden"
+          style={{
+            background: i % 3 === 0
+              ? "linear-gradient(135deg, oklch(0.55 0.15 35) 0%, oklch(0.7 0.13 75) 100%)"
+              : i % 3 === 1
+              ? "linear-gradient(135deg, oklch(0.45 0.12 25) 0%, oklch(0.6 0.1 50) 100%)"
+              : "linear-gradient(135deg, oklch(0.78 0.06 65) 0%, oklch(0.5 0.15 40) 100%)",
+          }}
+        >
+          <div className="absolute inset-0 opacity-30 mix-blend-overlay" style={{ background: "radial-gradient(circle at 30% 30%, #fff 0%, transparent 50%)" }} />
+        </div>
       ))}
     </div>
     <div className="flex justify-between px-0.5 mt-1">
-      {Array.from({ length: 8 }).map((_, i) => <div key={i} className="w-1.5 h-1.5 bg-cream rounded-sm" />)}
+      {Array.from({ length: 8 }).map((_, i) => <div key={i} className="w-1.5 h-1.5 bg-cream/90 rounded-[1px]" />)}
     </div>
   </div>
 );
 
-// Red gingham bow
+// Hand-drawn ribbon bow with looped tails
 const Bow = ({ className = "", size = 48 }: { className?: string; size?: number }) => (
-  <svg viewBox="0 0 64 40" width={size} height={size * 0.625} className={className} aria-hidden>
-    <path d="M2 8 Q 28 -2, 30 20 Q 28 42, 2 32 Z" fill="oklch(0.45 0.18 25)" stroke="oklch(0.25 0.1 25)" strokeWidth="1" />
-    <path d="M62 8 Q 36 -2, 34 20 Q 36 42, 62 32 Z" fill="oklch(0.45 0.18 25)" stroke="oklch(0.25 0.1 25)" strokeWidth="1" />
-    <rect x="26" y="12" width="12" height="16" rx="2" fill="oklch(0.35 0.15 25)" stroke="oklch(0.2 0.08 25)" strokeWidth="1" />
-    <path d="M22 28 L 16 38 M 42 28 L 48 38" stroke="oklch(0.45 0.18 25)" strokeWidth="3" strokeLinecap="round" />
+  <svg viewBox="0 0 80 56" width={size} height={size * 0.7} className={className} aria-hidden>
+    <defs>
+      <linearGradient id="bowGrad" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stopColor="oklch(0.55 0.2 28)" />
+        <stop offset="100%" stopColor="oklch(0.32 0.14 22)" />
+      </linearGradient>
+    </defs>
+    {/* tails */}
+    <path d="M34 30 Q 24 44, 18 54" stroke="url(#bowGrad)" strokeWidth="6" fill="none" strokeLinecap="round" />
+    <path d="M46 30 Q 56 44, 62 54" stroke="url(#bowGrad)" strokeWidth="6" fill="none" strokeLinecap="round" />
+    {/* left loop */}
+    <path d="M40 24 Q 12 8, 6 22 Q 2 34, 40 30 Z" fill="url(#bowGrad)" stroke="oklch(0.22 0.08 22)" strokeWidth="1.2" />
+    {/* right loop */}
+    <path d="M40 24 Q 68 8, 74 22 Q 78 34, 40 30 Z" fill="url(#bowGrad)" stroke="oklch(0.22 0.08 22)" strokeWidth="1.2" />
+    {/* knot */}
+    <ellipse cx="40" cy="27" rx="6" ry="8" fill="oklch(0.28 0.12 22)" stroke="oklch(0.18 0.06 22)" strokeWidth="1" />
+    {/* highlight */}
+    <path d="M18 18 Q 14 22, 16 26" stroke="#fff" strokeWidth="1.5" fill="none" opacity="0.5" strokeLinecap="round" />
   </svg>
 );
 
-// Disco ball
+// Disco ball with sparkle highlight
 const DiscoBall = ({ className = "", size = 56 }: { className?: string; size?: number }) => (
   <svg viewBox="0 0 64 64" width={size} height={size} className={className} aria-hidden>
     <defs>
       <radialGradient id="db" cx="35%" cy="30%">
-        <stop offset="0%" stopColor="#f5f5f5" />
-        <stop offset="60%" stopColor="#9aa3ab" />
-        <stop offset="100%" stopColor="#3a3f44" />
+        <stop offset="0%" stopColor="#fff" />
+        <stop offset="40%" stopColor="#c0c8d0" />
+        <stop offset="80%" stopColor="#6b7480" />
+        <stop offset="100%" stopColor="#2a2d35" />
       </radialGradient>
     </defs>
-    <circle cx="32" cy="32" r="28" fill="url(#db)" />
+    <circle cx="32" cy="32" r="28" fill="url(#db)" stroke="oklch(0.22 0.04 30)" strokeWidth="1" />
     {[10, 18, 26, 34, 42, 50].map((y) => (
-      <line key={`h${y}`} x1="6" y1={y} x2="58" y2={y} stroke="#2a2d31" strokeWidth="0.6" opacity="0.5" />
+      <ellipse key={`h${y}`} cx="32" cy={y} rx={Math.sqrt(Math.max(0, 784 - (y - 32) ** 2))} ry="2" fill="none" stroke="#1a1d22" strokeWidth="0.4" opacity="0.45" />
     ))}
-    {[10, 18, 26, 34, 42, 50].map((x) => (
-      <path key={`v${x}`} d={`M${x} 8 Q ${32} ${x < 32 ? 32 : 32}, ${x} 56`} stroke="#2a2d31" strokeWidth="0.5" fill="none" opacity="0.4" />
+    {[8, 16, 24, 32, 40, 48, 56].map((x) => (
+      <line key={`v${x}`} x1={x} y1="6" x2={x} y2="58" stroke="#1a1d22" strokeWidth="0.4" opacity="0.35" />
     ))}
-    <circle cx="22" cy="22" r="4" fill="#fff" opacity="0.7" />
+    {/* tile speculars */}
+    {[[18, 18], [40, 14], [28, 30], [44, 36], [22, 44]].map(([cx, cy], i) => (
+      <rect key={i} x={cx} y={cy} width="3" height="3" fill="#fff" opacity="0.85" />
+    ))}
+    {/* sparkle */}
+    <g transform="translate(50 12)">
+      <path d="M0 -6 L1 -1 L6 0 L1 1 L0 6 L-1 1 L-6 0 L-1 -1 Z" fill="#fff" opacity="0.9" />
+    </g>
   </svg>
 );
 
-// Postage / "I ♥ NY" style sticker
+// Vintage postage-stamp heart sticker with perforated edge
 const HeartSticker = ({ text = "I ♥ KN", className = "" }: { text?: string; className?: string }) => (
   <div className={`relative ${className}`} aria-hidden>
-    <div className="w-20 h-20 rounded-full bg-cream border-2 border-ink shadow-[0_4px_10px_rgba(0,0,0,0.25)] flex items-center justify-center font-display font-bold text-ink text-lg leading-tight text-center">
-      {text}
+    <div
+      className="relative w-24 h-24 bg-cream border-2 border-ink/70 flex flex-col items-center justify-center font-display font-bold text-ink text-base leading-tight text-center shadow-[0_5px_14px_rgba(0,0,0,0.28)]"
+      style={{
+        WebkitMaskImage: "radial-gradient(circle at 6px 50%, transparent 3.5px, #000 4px), radial-gradient(circle at calc(100% - 6px) 50%, transparent 3.5px, #000 4px), radial-gradient(circle at 50% 6px, transparent 3.5px, #000 4px), radial-gradient(circle at 50% calc(100% - 6px), transparent 3.5px, #000 4px)",
+        WebkitMaskComposite: "source-in",
+      }}
+    >
+      <div className="absolute inset-1.5 border border-burgundy/40" />
+      <div className="text-rust text-2xl leading-none animate-heartbeat">♥</div>
+      <div className="text-[10px] tracking-[0.2em] font-stamp text-burgundy mt-1">{text}</div>
     </div>
   </div>
 );
+
+
 
 
 // Crossword puzzle — letters laid on an 11×9 grid, hand-circled words.
@@ -308,14 +351,16 @@ function Portfolio() {
               </motion.div>
 
               {/* Floating star + vintage camera + film strip + bow */}
-              <Camera className="absolute top-6 right-6 md:top-10 md:right-10 text-burgundy rotate-[10deg]" size={70} />
-              <FilmStrip className="absolute top-24 right-4 md:top-32 md:right-6 w-12 rotate-[6deg] opacity-90 hidden sm:block" frames={3} />
-              <Bow className="absolute top-2 left-2 md:top-4 md:left-4 rotate-[-20deg]" size={56} />
+              <Camera className="absolute top-6 right-6 md:top-10 md:right-10 text-burgundy rotate-[10deg] animate-wobble sticker" size={70} />
+              <FilmStrip className="absolute top-24 right-4 md:top-32 md:right-6 w-12 rotate-[6deg] opacity-95 hidden sm:block animate-sway sticker" frames={3} />
+              <Bow className="absolute top-2 left-2 md:top-4 md:left-4 animate-jiggle sticker" size={64} />
               <Star
-                className="absolute bottom-6 right-6 md:bottom-10 md:right-10 text-cream stroke-ink animate-wobble"
+                className="absolute bottom-6 right-6 md:bottom-10 md:right-10 text-cream stroke-ink animate-wobble sticker"
                 size={90}
               />
-              <HeartSticker text="vol 26" className="absolute bottom-4 left-4 md:bottom-8 md:left-8 rotate-[-8deg]" />
+              <DiscoBall className="absolute top-32 left-2 md:top-40 md:left-6 hidden sm:block animate-float animate-shimmer sticker" size={52} />
+              <HeartSticker text="vol 26" className="absolute bottom-4 left-4 md:bottom-8 md:left-8 rotate-[-8deg] animate-float sticker" />
+
             </div>
           </div>
         </div>
@@ -519,9 +564,9 @@ function Portfolio() {
 
               {/* vintage stickers cluster */}
               <Camera className="absolute -bottom-2 right-4 text-burgundy rotate-[8deg] opacity-90 hidden md:block" size={90} />
-              <FilmStrip className="absolute -left-4 top-32 w-14 rotate-[-8deg] hidden md:block" frames={4} />
-              <Bow className="absolute -top-4 left-40 rotate-[15deg]" size={52} />
-              <DiscoBall className="absolute bottom-16 left-4 hidden md:block animate-float" size={64} />
+              <FilmStrip className="absolute -left-4 top-32 w-14 rotate-[-8deg] hidden md:block animate-sway sticker" frames={4} />
+              <Bow className="absolute -top-4 left-40 animate-jiggle sticker" size={56} />
+              <DiscoBall className="absolute bottom-16 left-4 hidden md:block animate-float animate-shimmer sticker" size={64} />
             </div>
 
             {/* RIGHT — Crossword in a clipboard */}
@@ -686,9 +731,9 @@ function Portfolio() {
 
               <Star className="absolute bottom-6 left-10 text-rust animate-wobble" size={64} />
               <Sparkle className="absolute top-4 right-20 text-gold animate-float w-8 h-8" />
-              <DiscoBall className="absolute bottom-[260px] left-2 animate-float" size={56} />
-              <Bow className="absolute bottom-2 right-2 rotate-[8deg]" size={64} />
-              <FilmStrip className="absolute top-4 left-1/2 -translate-x-1/2 w-10 rotate-[-4deg] opacity-90" frames={3} />
+              <DiscoBall className="absolute bottom-[260px] left-2 animate-float animate-shimmer sticker" size={56} />
+              <Bow className="absolute bottom-2 right-2 animate-jiggle sticker" size={64} />
+              <FilmStrip className="absolute top-4 left-1/2 -translate-x-1/2 w-10 rotate-[-4deg] opacity-90 animate-sway sticker" frames={3} />
             </div>
 
             {/* Roles */}
