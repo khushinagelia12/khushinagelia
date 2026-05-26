@@ -93,6 +93,64 @@ const PaperCut = ({ className = "" }: { className?: string }) => (
   </svg>
 );
 
+// Film strip — vertical reel with empty frames
+const FilmStrip = ({ className = "", frames = 4 }: { className?: string; frames?: number }) => (
+  <div className={`relative bg-ink p-1.5 ${className}`}>
+    <div className="flex justify-between px-0.5 mb-1">
+      {Array.from({ length: 8 }).map((_, i) => <div key={i} className="w-1.5 h-1.5 bg-cream rounded-sm" />)}
+    </div>
+    <div className="flex flex-col gap-1.5">
+      {Array.from({ length: frames }).map((_, i) => (
+        <div key={i} className="bg-cream/95 aspect-[4/3] border border-ink/30" />
+      ))}
+    </div>
+    <div className="flex justify-between px-0.5 mt-1">
+      {Array.from({ length: 8 }).map((_, i) => <div key={i} className="w-1.5 h-1.5 bg-cream rounded-sm" />)}
+    </div>
+  </div>
+);
+
+// Red gingham bow
+const Bow = ({ className = "", size = 48 }: { className?: string; size?: number }) => (
+  <svg viewBox="0 0 64 40" width={size} height={size * 0.625} className={className} aria-hidden>
+    <path d="M2 8 Q 28 -2, 30 20 Q 28 42, 2 32 Z" fill="oklch(0.45 0.18 25)" stroke="oklch(0.25 0.1 25)" strokeWidth="1" />
+    <path d="M62 8 Q 36 -2, 34 20 Q 36 42, 62 32 Z" fill="oklch(0.45 0.18 25)" stroke="oklch(0.25 0.1 25)" strokeWidth="1" />
+    <rect x="26" y="12" width="12" height="16" rx="2" fill="oklch(0.35 0.15 25)" stroke="oklch(0.2 0.08 25)" strokeWidth="1" />
+    <path d="M22 28 L 16 38 M 42 28 L 48 38" stroke="oklch(0.45 0.18 25)" strokeWidth="3" strokeLinecap="round" />
+  </svg>
+);
+
+// Disco ball
+const DiscoBall = ({ className = "", size = 56 }: { className?: string; size?: number }) => (
+  <svg viewBox="0 0 64 64" width={size} height={size} className={className} aria-hidden>
+    <defs>
+      <radialGradient id="db" cx="35%" cy="30%">
+        <stop offset="0%" stopColor="#f5f5f5" />
+        <stop offset="60%" stopColor="#9aa3ab" />
+        <stop offset="100%" stopColor="#3a3f44" />
+      </radialGradient>
+    </defs>
+    <circle cx="32" cy="32" r="28" fill="url(#db)" />
+    {[10, 18, 26, 34, 42, 50].map((y) => (
+      <line key={`h${y}`} x1="6" y1={y} x2="58" y2={y} stroke="#2a2d31" strokeWidth="0.6" opacity="0.5" />
+    ))}
+    {[10, 18, 26, 34, 42, 50].map((x) => (
+      <path key={`v${x}`} d={`M${x} 8 Q ${32} ${x < 32 ? 32 : 32}, ${x} 56`} stroke="#2a2d31" strokeWidth="0.5" fill="none" opacity="0.4" />
+    ))}
+    <circle cx="22" cy="22" r="4" fill="#fff" opacity="0.7" />
+  </svg>
+);
+
+// Postage / "I ♥ NY" style sticker
+const HeartSticker = ({ text = "I ♥ KN", className = "" }: { text?: string; className?: string }) => (
+  <div className={`relative ${className}`} aria-hidden>
+    <div className="w-20 h-20 rounded-full bg-cream border-2 border-ink shadow-[0_4px_10px_rgba(0,0,0,0.25)] flex items-center justify-center font-display font-bold text-ink text-lg leading-tight text-center">
+      {text}
+    </div>
+  </div>
+);
+
+
 // Crossword puzzle — letters laid on an 11×9 grid, hand-circled words.
 // Words: DESIGN (row 2), POSTER (row 4), BRAND (col 2), TYPE (col 4),
 // STYLE (col 7), GRID (row 6), INK (col 9), ART (row 8)
