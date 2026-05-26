@@ -731,9 +731,9 @@ function Portfolio() {
 
               <Star className="absolute bottom-6 left-10 text-rust animate-wobble" size={64} />
               <Sparkle className="absolute top-4 right-20 text-gold animate-float w-8 h-8" />
-              <DiscoBall className="absolute bottom-[260px] left-2 animate-float" size={56} />
-              <Bow className="absolute bottom-2 right-2 rotate-[8deg]" size={64} />
-              <FilmStrip className="absolute top-4 left-1/2 -translate-x-1/2 w-10 rotate-[-4deg] opacity-90" frames={3} />
+              <DiscoBall className="absolute bottom-[260px] left-2 animate-float animate-shimmer sticker" size={56} />
+              <Bow className="absolute bottom-2 right-2 animate-jiggle sticker" size={64} />
+              <FilmStrip className="absolute top-4 left-1/2 -translate-x-1/2 w-10 rotate-[-4deg] opacity-90 animate-sway sticker" frames={3} />
             </div>
 
             {/* Roles */}
