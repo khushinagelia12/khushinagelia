@@ -325,6 +325,7 @@ function Portfolio() {
 
           <div className="md:col-span-7 space-y-6 font-serif">
             {[
+              { k: "design", v: "canva · figma · webflow · framer · adobe express · branding · creative direction · presentation design · visual storytelling" },
               { k: "languages", v: "python · typescript · javascript · c · java · sql" },
               { k: "frameworks", v: "react · next.js · node · django · flask · tensorflow · pytorch" },
               { k: "data & ai", v: "pandas · numpy · scikit-learn · nlp · embeddings · faiss" },
