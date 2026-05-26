@@ -307,13 +307,22 @@ function Portfolio() {
                 </div>
               </motion.div>
 
-              {/* Floating star + vintage camera */}
+              {/* Floating star + vintage camera + film strip + bow */}
               <Camera className="absolute top-6 right-6 md:top-10 md:right-10 text-burgundy rotate-[10deg]" size={70} />
+              <FilmStrip className="absolute top-24 right-4 md:top-32 md:right-6 w-12 rotate-[6deg] opacity-90 hidden sm:block" frames={3} />
+              <Bow className="absolute top-2 left-2 md:top-4 md:left-4 rotate-[-20deg]" size={56} />
               <Star
                 className="absolute bottom-6 right-6 md:bottom-10 md:right-10 text-cream stroke-ink animate-wobble"
                 size={90}
               />
+              <HeartSticker text="vol 26" className="absolute bottom-4 left-4 md:bottom-8 md:left-8 rotate-[-8deg]" />
             </div>
+          </div>
+        </div>
+      </Page>
+
+
+      <MarqueeBar text="khushi nagelia · portfolio 2026 · b.tech data science" />
           </div>
         </div>
       </Page>
