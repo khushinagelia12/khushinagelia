@@ -358,7 +358,7 @@ function Portfolio() {
                 className="absolute bottom-6 right-6 md:bottom-10 md:right-10 text-cream stroke-ink animate-wobble sticker"
                 size={90}
               />
-              <DiscoBall className="absolute top-32 left-2 md:top-40 md:left-6 hidden sm:block animate-float animate-shimmer sticker" size={52} style={{ animationDuration: "7s" }} />
+              <DiscoBall className="absolute top-32 left-2 md:top-40 md:left-6 hidden sm:block animate-float animate-shimmer sticker" size={52} />
               <HeartSticker text="vol 26" className="absolute bottom-4 left-4 md:bottom-8 md:left-8 rotate-[-8deg] animate-float sticker" />
 
             </div>
